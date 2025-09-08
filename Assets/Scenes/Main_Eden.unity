@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185977683}
   - component: {fileID: 185977682}
+  - component: {fileID: 185977684}
   m_Layer: 0
   m_Name: DotGameController
   m_TagString: Untagged
@@ -150,11 +151,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dotPrefabs:
   - {fileID: 5808141795265122430, guid: ddb68ac34bc0343dc934b25480d7d946, type: 3}
+  initialCount: 4
+  autoSpeed: 0.5
+  switchPeriod: 2
   spawnParent: {fileID: 185977683}
-  spawnXRange: {x: 0, y: 0}
-  spawnYRange: {x: -3, y: 3}
   bottomBound: {fileID: 1671956973}
   topBound: {fileID: 738484409}
+  lateralMargin: 0.5
+  pool: {fileID: 0}
 --- !u!4 &185977683
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +174,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &185977684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185977681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65522f9a6f2c4809aecbb9bbf91dcbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolRoot: {fileID: 185977683}
+  prewarmPerPrefab: 4
+  maxPoolPerPrefab: 64
 --- !u!1 &229385030
 GameObject:
   m_ObjectHideFlags: 0
