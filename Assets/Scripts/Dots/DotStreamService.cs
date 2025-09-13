@@ -37,6 +37,9 @@ public class DotStreamService
             {
                 bool wasCurrent = (i == selection.CurrentIndex);
 
+                if (wasCurrent)
+                    selection.BeforeSwitchHook?.Invoke(dot);
+                
                 dot.StopHold();
                 dot.SetSelected(false);
 

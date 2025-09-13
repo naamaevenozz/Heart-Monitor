@@ -21,6 +21,11 @@ public class DotGameController : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] DotPool pool;
 
+    [Header("Scoring")]
+    [SerializeField] PlayerStats player;       // ← drag your PlayerStats here
+    [SerializeField] int pointsOnGraphHit = 100;
+    [SerializeField] int lifePenaltyOnMiss = 1;
+
     // runtime
     readonly List<DotMove> active = new();
     DotSpawner spawner;
@@ -44,6 +49,9 @@ public class DotGameController : MonoBehaviour
         selection = new DotSelectionService(active);
         stream    = new DotStreamService(active, spawner, selection, cam, autoSpeed, lateralMargin);
 
+        // Register scoring hook before each selection switch (timer only)
+        selection.BeforeSwitchHook = HandleBeforeSwitch;
+
         // Spawn initial & select first
         GetEdges(out float leftEdge, out float rightEdge);
         spawner.SpawnInitial(initialCount, active, leftEdge, rightEdge);
@@ -60,6 +68,19 @@ public class DotGameController : MonoBehaviour
             switchTimer = 0f;
             selection.NextSelection();
         }
+    }
+
+    // Called ONLY on timed switch, not on recycle
+    void HandleBeforeSwitch(DotMove prevDot)
+    {
+        if (!player || !prevDot) return;
+        
+        Debug.Log("SWITCH | IsTouchingGraph: " + prevDot.IsTouchingGraph);
+        
+        if (prevDot.IsTouchingGraph)
+            player.AddScore(pointsOnGraphHit);
+        else
+            player.LoseLife(lifePenaltyOnMiss);
     }
 
     void GetEdges(out float left, out float right)

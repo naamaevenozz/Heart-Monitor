@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DefaultNamespace;
@@ -68,6 +69,7 @@ public class DotPool : MonoBehaviour
         return inst;
     }
 
+    [Obsolete("Obsolete")]
     public void Release(DotMove inst)
     {
         if (!inst) return;
@@ -81,16 +83,16 @@ public class DotPool : MonoBehaviour
         inst.StopHold();
         inst.SetSelected(false);
 
-        if (inst.TryGetComponent<Rigidbody2D>(out var rb2d))
-        {
-            rb2d.linearVelocity = Vector2.zero;
+        // DotPool.Release(...)
+        if (inst.TryGetComponent<Rigidbody2D>(out var rb2d)) {
+            rb2d.velocity = Vector2.zero;
             rb2d.angularVelocity = 0f;
         }
-        if (inst.TryGetComponent<Rigidbody>(out var rb3d))
-        {
-            rb3d.linearVelocity = Vector3.zero;
+        if (inst.TryGetComponent<Rigidbody>(out var rb3d)) {
+            rb3d.velocity = Vector3.zero;
             rb3d.angularVelocity = Vector3.zero;
         }
+
 
         if (maxPoolPerPrefab > 0 && pool[prefab].Count >= maxPoolPerPrefab)
         {

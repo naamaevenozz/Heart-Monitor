@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DefaultNamespace; // DotMove
@@ -13,12 +14,14 @@ public class DotSelectionService
     public int CurrentIndex => currentIndex;
     public int HeldDir => heldDir;
 
+    public Action<DotMove> BeforeSwitchHook;
     public void SelectIndex(int idx)
     {
         if (active.Count == 0) { currentIndex = -1; return; }
 
         if (currentIndex >= 0 && currentIndex < active.Count)
         {
+            BeforeSwitchHook?.Invoke(active[currentIndex]);
             active[currentIndex].StopHold();
             active[currentIndex].SetSelected(false);
         }
@@ -33,8 +36,10 @@ public class DotSelectionService
     public void NextSelection()
     {
         if (active.Count == 0) return;
-        int next = (currentIndex + 1 + active.Count) % active.Count;
-        SelectIndex(next);
+        active.Sort((a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+        int indexInSorted = active.IndexOf(active[currentIndex]);
+        int nextIndex = (indexInSorted + 1) % active.Count;
+        SelectIndex(nextIndex);
     }
 
     public void HandleRemoval(int removedIndex)

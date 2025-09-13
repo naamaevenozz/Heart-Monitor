@@ -3,13 +3,14 @@ namespace DefaultNamespace
     using UnityEngine;
 
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(Collider2D))] // Ensure there's a Collider2D for triggers
     public class DotMove : MonoBehaviour, IDotMover
     {
         public enum SpaceMode { World, Local }
 
         [Header("Step / Speed")]
-        [SerializeField] float step = 0.1f;          
-        [SerializeField] float holdSpeed = 2f;       
+        [SerializeField] float step = 0.1f;
+        [SerializeField] float holdSpeed = 2f;
         [SerializeField] SpaceMode space = SpaceMode.World;
 
         [Header("Bounds")]
@@ -20,13 +21,20 @@ namespace DefaultNamespace
         [SerializeField] Color selectedColor = Color.blue;
         [SerializeField] float selectedScale = 1.15f;
 
+        [Header("Trigger Tag")]
+        [SerializeField] string graphTag = "graph"; // Tag to score against
+
         Rigidbody rb3D;
         Rigidbody2D rb2D;
         SpriteRenderer sr;
 
-        int holdDir = 0;            // 1=Up, -1=Down, 0=None
+        int holdDir = 0;                      // 1=Up, -1=Down, 0=None
         [SerializeField] Color baseColor = Color.cyan;
         Vector3 baseScale;
+
+        // Tracks how many graph-colliders we're currently touching (supports multiple colliders)
+        int graphContacts = 0;
+        public bool IsTouchingGraph => graphContacts > 0;
 
         void Awake()
         {
@@ -40,7 +48,9 @@ namespace DefaultNamespace
 
         void OnDisable()
         {
+            // Clear input/contacts when pooled or disabled
             holdDir = 0;
+            graphContacts = 0;
         }
 
         // ===== UI Interface =====
@@ -87,10 +97,12 @@ namespace DefaultNamespace
             transform.localScale = on ? baseScale * selectedScale : baseScale;
         }
 
-        // ===== שימושי לפולינג =====
+        // ===== Pooling helpers =====
         public void ResetForReuse()
         {
             holdDir = 0;
+            graphContacts = 0;
+
             if (rb2D)
             {
                 rb2D.linearVelocity = Vector2.zero;
@@ -104,7 +116,7 @@ namespace DefaultNamespace
 
             SetSelected(false);
         }
-        
+
         public void SetBaseAppearance(Color color, float scale = 1f)
         {
             baseColor = color;
@@ -112,6 +124,19 @@ namespace DefaultNamespace
             if (sr) sr.color = baseColor;
             if (transform.localScale != baseScale && scale > 0f)
                 transform.localScale = baseScale;
+        }
+
+        // ===== Trigger contact tracking (2D) =====
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag(graphTag))
+                graphContacts++;
+        }
+
+        void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag(graphTag))
+                graphContacts = Mathf.Max(0, graphContacts - 1);
         }
     }
 }
