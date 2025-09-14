@@ -3,23 +3,18 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class ECGWaveDrawer : MonoBehaviour
 {
-    [Header("Wave Parameters")]
-    public ECGPointTester.Params parameters = new ECGPointTester.Params
-    {
-        speed = 0.2f,
-        wavesAmount = 5f,
-        wavesAmp = 0.2f,
-        noiseAmp = 0.5f,
-        noiseScale = 10f,
-        baseColor = Color.cyan
-    };
+    [Header("Shader Material")]
+    [SerializeField] public Material material;
+
+    [Header("Wave Parameters (Serialized)")]
+    [SerializeField] public ECGPointTester.Params parameters;
 
     [Header("Graph Settings")]
-    public int resolution = 200;
-    public Vector2 rangeX = new Vector2(0, 5);
-    public float yOffset = 0;
+    [SerializeField] private int resolution = 200;
+    [SerializeField] private Vector2 rangeX = new Vector2(0, 5);
+    [SerializeField] private float yOffset = 0;
 
-    LineRenderer line;
+    private LineRenderer line;
 
     void Start()
     {
@@ -28,13 +23,20 @@ public class ECGWaveDrawer : MonoBehaviour
         line.widthMultiplier = 0.05f;
         line.material = new Material(Shader.Find("Sprites/Default"));
         line.startColor = parameters.baseColor;
-        line.endColor = parameters.baseColor;
     }
 
     void Update()
     {
-        float time = Time.time;
+        if (material != null)
+        {
+            material.SetFloat("_speed", parameters.speed);
+            material.SetFloat("_waves_Amount", parameters.wavesAmount);
+            material.SetFloat("_waves_Amp", parameters.wavesAmp);
+            material.SetFloat("_noise_Amp", parameters.noiseAmp);
+            material.SetFloat("_noise_Scale", parameters.noiseScale);
+        }
 
+        float time = Time.time;
         for (int i = 0; i <= resolution; i++)
         {
             float t = (float)i / resolution;

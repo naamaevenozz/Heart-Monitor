@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class ECGPointTester : MonoBehaviour
 {
-    public struct Params
+    [System.Serializable]
+    public class Params
     {
-        public float speed;        
-        public float wavesAmount;  
-        public float wavesAmp;     
-        public float noiseAmp;     
-        public float noiseScale;   
-        public Color baseColor;    
+        public float speed = 0.2f;        
+        public float wavesAmount = 5f;  
+        public float wavesAmp = 0.2f;     
+        public float noiseAmp = 0.5f;     
+        public float noiseScale = 10f;   
+        public Color baseColor = Color.cyan;    
     }
 
-    
     public struct Eval
     {
         public float height;        
@@ -34,7 +34,7 @@ public class ECGPointTester : MonoBehaviour
         return Mathf.PerlinNoise(uv.x * scale, uv.y * scale);
     }
 
-    public static Eval Evaluate(Vector2 uv, float time, in Params p)
+    public static Eval Evaluate(Vector2 uv, float time, Params p)
     {
         Eval e = default;
 
@@ -56,12 +56,10 @@ public class ECGPointTester : MonoBehaviour
 
         e.vertexAdd = new Vector2(0f, e.height);
 
-
         float phaseY = e.uvShifted.y * freq;        
         float sineY = Mathf.Sin(phaseY);            
 
         float sineY01 = Remap(sineY, -1f, 1f, 0f, 1f);
-
         sineY01 = Mathf.Clamp01(sineY01);
 
         e.color = p.baseColor * sineY01;
@@ -70,9 +68,8 @@ public class ECGPointTester : MonoBehaviour
         return e;
     }
 
-    public static float WaveValue(Vector2 uv, float time, in Params p)
+    public static float WaveValue(Vector2 uv, float time, Params p)
     {
         return Evaluate(uv, time, p).height;
     }
-    
 }
