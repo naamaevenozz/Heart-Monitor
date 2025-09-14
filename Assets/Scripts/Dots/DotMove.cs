@@ -6,12 +6,9 @@ namespace DefaultNamespace
     [RequireComponent(typeof(Collider2D))] // Ensure there's a Collider2D for triggers
     public class DotMove : MonoBehaviour, IDotMover
     {
-        public enum SpaceMode { World, Local }
-
         [Header("Step / Speed")]
         [SerializeField] float step = 0.1f;
         [SerializeField] float holdSpeed = 2f;
-        [SerializeField] SpaceMode space = SpaceMode.World;
 
         [Header("Bounds")]
         public Transform bottomBound;
@@ -24,8 +21,7 @@ namespace DefaultNamespace
         [Header("Trigger Tag")]
         [SerializeField] string graphTag = "graph"; // Tag to score against
 
-        Rigidbody rb3D;
-        Rigidbody2D rb2D;
+        Rigidbody2D _rb;
         SpriteRenderer sr;
 
         int holdDir = 0;                      // 1=Up, -1=Down, 0=None
@@ -38,8 +34,7 @@ namespace DefaultNamespace
 
         void Awake()
         {
-            rb3D = GetComponent<Rigidbody>();
-            rb2D = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();
             sr   = GetComponent<SpriteRenderer>();
 
             baseScale = transform.localScale;
@@ -62,33 +57,22 @@ namespace DefaultNamespace
 
         void Update()
         {
-            if (holdDir != 0 && rb3D == null && rb2D == null)
+            if (holdDir != 0)
                 Move(holdDir * holdSpeed * Time.deltaTime);
-        }
-
-        void FixedUpdate()
-        {
-            if (holdDir != 0 && (rb3D != null || rb2D != null))
-                Move(holdDir * holdSpeed * Time.fixedDeltaTime);
         }
 
         void Move(float delta)
         {
-            Vector3 axis   = (space == SpaceMode.World) ? Vector3.up : transform.up;
-            Vector3 target = transform.position + axis * delta;
+            float y = transform.position.y + delta;
 
             if (topBound || bottomBound)
             {
                 float minY = bottomBound ? bottomBound.position.y : float.NegativeInfinity;
                 float maxY = topBound    ? topBound.position.y    : float.PositiveInfinity;
-                target.y = Mathf.Clamp(target.y, minY, maxY);
+                y = Mathf.Clamp(y, minY, maxY);
             }
 
-            if (rb2D) target.z = transform.position.z;
-
-            if (rb2D)      rb2D.MovePosition(new Vector2(target.x, target.y));
-            else if (rb3D) rb3D.MovePosition(target);
-            else           transform.position = target;
+            _rb.MovePosition(new Vector2(transform.position.x, y));
         }
 
         public void SetSelected(bool on)
@@ -102,18 +86,8 @@ namespace DefaultNamespace
         {
             holdDir = 0;
             graphContacts = 0;
-
-            if (rb2D)
-            {
-                rb2D.linearVelocity = Vector2.zero;
-                rb2D.angularVelocity = 0f;
-            }
-            if (rb3D)
-            {
-                rb3D.linearVelocity = Vector3.zero;
-                rb3D.angularVelocity = Vector3.zero;
-            }
-
+            _rb.linearVelocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
             SetSelected(false);
         }
 

@@ -1,32 +1,31 @@
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
-using DefaultNamespace; 
 
 public class DotGameController : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] List<DotMove> dotPrefabs = new();
 
-    [Header("Initial / Speed / Switch")]
-    [SerializeField] int   initialCount = 4;
-    [SerializeField] float autoSpeed    = 0.5f;
-    [SerializeField] float switchPeriod = 2f;
+    [Header("Settings")]
+    [SerializeField] int   initialCount   = 4;
+    [SerializeField] float autoSpeed      = 0.5f;
+    [SerializeField] float switchPeriod   = 2f;
+    [SerializeField] float lateralMargin  = 0.5f;
 
-    [Header("Spawn Parents / Bounds")]
+    [Header("Hierarchy & Bounds")]
     [SerializeField] Transform spawnParent;
     [SerializeField] Transform bottomBound;
     [SerializeField] Transform topBound;
-    [SerializeField] float    lateralMargin = 0.5f;
 
-    [Header("Dependencies")]
+    [Header("Pooling")]
     [SerializeField] DotPool pool;
 
     [Header("Scoring")]
-    [SerializeField] PlayerStats player;       // ← drag your PlayerStats here
+    [SerializeField] PlayerStats player;
     [SerializeField] int pointsOnGraphHit = 100;
     [SerializeField] int lifePenaltyOnMiss = 1;
 
-    // runtime
     readonly List<DotMove> active = new();
     DotSpawner spawner;
     DotSelectionService selection;
@@ -40,8 +39,12 @@ public class DotGameController : MonoBehaviour
         cam = Camera.main;
 
         if (!pool) pool = FindObjectOfType<DotPool>();
-        if (!pool) { Debug.LogError("DotGameController: Missing DotPool."); enabled = false; return; }
-        if (dotPrefabs.Count == 0) { Debug.LogError("DotGameController: No prefabs."); enabled = false; return; }
+        if (!pool || dotPrefabs.Count == 0)
+        {
+            Debug.LogError("DotGameController: Missing pool or prefabs.");
+            enabled = false;
+            return;
+        }
 
         pool.Initialize(dotPrefabs);
 
@@ -49,10 +52,8 @@ public class DotGameController : MonoBehaviour
         selection = new DotSelectionService(active);
         stream    = new DotStreamService(active, spawner, selection, cam, autoSpeed, lateralMargin);
 
-        // Register scoring hook before each selection switch (timer only)
         selection.BeforeSwitchHook = HandleBeforeSwitch;
 
-        // Spawn initial & select first
         GetEdges(out float leftEdge, out float rightEdge);
         spawner.SpawnInitial(initialCount, active, leftEdge, rightEdge);
         selection.SelectIndex(0);
@@ -70,13 +71,10 @@ public class DotGameController : MonoBehaviour
         }
     }
 
-    // Called ONLY on timed switch, not on recycle
     void HandleBeforeSwitch(DotMove prevDot)
     {
         if (!player || !prevDot) return;
-        
-        Debug.Log("SWITCH | IsTouchingGraph: " + prevDot.IsTouchingGraph);
-        
+
         if (prevDot.IsTouchingGraph)
             player.AddScore(pointsOnGraphHit);
         else
@@ -91,27 +89,30 @@ public class DotGameController : MonoBehaviour
         right = cam.transform.position.x + horiz;
     }
 
-    // ===== UI hooks =====
-    public void UI_MoveUp()        => selection.MoveUp();
-    public void UI_MoveDown()      => selection.MoveDown();
-    public void UI_StartHoldUp()   => selection.StartHoldUp();
-    public void UI_StartHoldDown() => selection.StartHoldDown();
-    public void UI_StopHold()      => selection.StopHold();
+    // ===== UI Hooks =====
+    public void UI_MoveUp()         => selection.MoveUp();
+    public void UI_MoveDown()       => selection.MoveDown();
+    public void UI_StartHoldUp()    => selection.StartHoldUp();
+    public void UI_StartHoldDown()  => selection.StartHoldDown();
+    public void UI_StopHold()       => selection.StopHold();
 
     public void UI_SpawnExtraOne()
     {
-        float vert  = cam.orthographicSize;
-        float horiz = vert * cam.aspect;
-        float right = cam.transform.position.x + horiz;
+        float right = GetRightEdge();
         active.Add(spawner.SpawnAtX(right + lateralMargin));
     }
 
     public void UI_SpawnExtraMany(int n)
     {
-        float vert  = cam.orthographicSize;
-        float horiz = vert * cam.aspect;
-        float right = cam.transform.position.x + horiz;
+        float right = GetRightEdge();
         for (int i = 0; i < n; i++)
             active.Add(spawner.SpawnAtX(right + lateralMargin + 0.2f * i));
+    }
+
+    float GetRightEdge()
+    {
+        float vert = cam.orthographicSize;
+        float horiz = vert * cam.aspect;
+        return cam.transform.position.x + horiz;
     }
 }

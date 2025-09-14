@@ -1,4 +1,3 @@
-// אפשר להשאיר/להסיר namespace כרצונך
 // namespace DefaultNamespace
 using UnityEngine;
 

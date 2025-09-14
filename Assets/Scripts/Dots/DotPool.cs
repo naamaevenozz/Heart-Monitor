@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using DefaultNamespace;
+using UnityEngine;
 
 [DisallowMultipleComponent]
 public class DotPool : MonoBehaviour
@@ -18,8 +18,8 @@ public class DotPool : MonoBehaviour
     {
         if (!poolRoot)
         {
-            var go = new GameObject("DotPool_Root");
-            poolRoot = go.transform;
+            var root = new GameObject("DotPool_Root");
+            poolRoot = root.transform;
             poolRoot.SetParent(transform, false);
         }
     }
@@ -29,6 +29,7 @@ public class DotPool : MonoBehaviour
         foreach (var prefab in prefabs)
         {
             if (prefab == null) continue;
+
             if (!pool.ContainsKey(prefab))
                 pool[prefab] = new Stack<DotMove>(Mathf.Max(4, prewarmPerPrefab));
 
@@ -55,21 +56,17 @@ public class DotPool : MonoBehaviour
             pool[prefab] = stack;
         }
 
-        DotMove inst;
-        if (stack.Count > 0) inst = stack.Pop();
-        else { inst = Instantiate(prefab); Register(inst, prefab); }
-
+        DotMove inst = (stack.Count > 0) ? stack.Pop() : Instantiate(prefab);
+        Register(inst, prefab);
         inst.ResetForReuse();
 
-        if (parent) inst.transform.SetParent(parent, false);
-        else        inst.transform.SetParent(null, false);
-
+        inst.transform.SetParent(parent ? parent : null, false);
         inst.transform.position = position;
         inst.gameObject.SetActive(true);
+
         return inst;
     }
 
-    [Obsolete("Obsolete")]
     public void Release(DotMove inst)
     {
         if (!inst) return;
@@ -83,16 +80,12 @@ public class DotPool : MonoBehaviour
         inst.StopHold();
         inst.SetSelected(false);
 
-        // DotPool.Release(...)
-        if (inst.TryGetComponent<Rigidbody2D>(out var rb2d)) {
-            rb2d.velocity = Vector2.zero;
-            rb2d.angularVelocity = 0f;
+        // אפס מהירות של Rigidbody2D בלבד
+        if (inst.TryGetComponent<Rigidbody2D>(out var rb2D))
+        {
+            rb2D.linearVelocity = Vector2.zero;
+            rb2D.angularVelocity = 0f;
         }
-        if (inst.TryGetComponent<Rigidbody>(out var rb3d)) {
-            rb3d.velocity = Vector3.zero;
-            rb3d.angularVelocity = Vector3.zero;
-        }
-
 
         if (maxPoolPerPrefab > 0 && pool[prefab].Count >= maxPoolPerPrefab)
         {

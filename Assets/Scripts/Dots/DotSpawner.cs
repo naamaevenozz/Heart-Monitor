@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
-using DefaultNamespace; // DotMove
 
 public class DotSpawner
 {
@@ -37,12 +37,15 @@ public class DotSpawner
     {
         var prefab = prefabs[Random.Range(0, prefabs.Count)];
         float y = RandomYWithinBounds();
-        var inst = pool.Get(prefab, new Vector3(x, y, 0f), spawnParent);
-        inst.bottomBound = bottomBound;
-        inst.topBound = topBound;
-        inst.SetSelected(false);
-        inst.StopHold();
-        return inst;
+
+        var instance = pool.Get(prefab, new Vector3(x, y, 0f), spawnParent);
+
+        instance.bottomBound = bottomBound;
+        instance.topBound = topBound;
+        instance.SetSelected(false);
+        instance.StopHold();
+
+        return instance;
     }
 
     public void Despawn(DotMove dot) => pool.Release(dot);

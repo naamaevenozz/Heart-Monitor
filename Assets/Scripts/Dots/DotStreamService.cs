@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
-using DefaultNamespace; // DotMove
 
 public class DotStreamService
 {
@@ -39,17 +39,15 @@ public class DotStreamService
 
                 if (wasCurrent)
                     selection.BeforeSwitchHook?.Invoke(dot);
-                
+
                 dot.StopHold();
                 dot.SetSelected(false);
-
                 spawner.Despawn(dot);
                 active.RemoveAt(i);
-
                 selection.HandleRemoval(i);
 
-                var spawned = spawner.SpawnAtX(rightEdge + lateralMargin);
-                active.Add(spawned);
+                var newDot = spawner.SpawnAtX(rightEdge + lateralMargin);
+                active.Add(newDot);
 
                 if (wasCurrent && active.Count > 0)
                     selection.ReapplySelectionWithHold();
@@ -60,21 +58,19 @@ public class DotStreamService
     void MoveLeft(DotMove dot, float dx)
     {
         dx = Mathf.Abs(dx);
-        var tr = dot.transform;
+        var pos = dot.transform.position;
 
-        if (dot.TryGetComponent(out Rigidbody2D rb2D))
-            rb2D.MovePosition(new Vector2(tr.position.x - dx, tr.position.y));
-        else if (dot.TryGetComponent(out Rigidbody rb3D))
-            rb3D.MovePosition(tr.position + Vector3.left * dx);
+        if (dot.TryGetComponent(out Rigidbody2D rb))
+            rb.MovePosition(new Vector2(pos.x - dx, pos.y));
         else
-            tr.Translate(Vector3.left * dx, Space.World);
+            dot.transform.Translate(Vector2.left * dx, Space.World);
     }
 
     void GetEdges(out float left, out float right)
     {
         float vert = cam.orthographicSize;
         float horiz = vert * cam.aspect;
-        left  = cam.transform.position.x - horiz;
+        left = cam.transform.position.x - horiz;
         right = cam.transform.position.x + horiz;
     }
 }
