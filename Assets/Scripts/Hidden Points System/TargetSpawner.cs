@@ -1,28 +1,17 @@
 using DefaultNamespace;
+using System.Collections;
 using UnityEngine;
 
 namespace Hidden_Points_System
 {
-    using System;
-using System.Collections;
-using UnityEngine;
-using Hidden_Points_System;
-
-using System;
-using System.Collections;
-using UnityEngine;
-using Hidden_Points_System;
-using DefaultNamespace;
-
     public class TargetSpawner : MonoBehaviour
     {
-        [Header("Spawn Area X")]
-        public float minX = -3f;
-        public float maxX = 3f;
+        [Header("Default Y Range (if wave config doesn't specify)")]
+        public float defaultMinY = -3f;
+        public float defaultMaxY = 3f;
 
-        [Header("Default Y Range (אם WaveConfig לא מכיל גבולות)")]
-        public float defaultMinY = -4f;
-        public float defaultMaxY = 4f;
+        private float screenLeftX;
+        private float screenRightX;
 
         private int activeTargetCount = 0;
 
@@ -34,6 +23,15 @@ using DefaultNamespace;
         private void OnDisable()
         {
             GameEvents.OnWaveStarted -= HandleWaveStarted;
+        }
+
+        private void Start()
+        {
+            Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
+            Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
+
+            screenLeftX = left.x;
+            screenRightX = right.x;
         }
 
         private void HandleWaveStarted(WaveConfig config)
@@ -67,9 +65,9 @@ using DefaultNamespace;
 
             float minY = defaultMinY;
             float maxY = defaultMaxY;
-            
+
             Vector2 spawnPos = new Vector2(
-                UnityEngine.Random.Range(minX, maxX),
+                UnityEngine.Random.Range(screenLeftX, screenRightX),
                 UnityEngine.Random.Range(minY, maxY)
             );
 
@@ -82,11 +80,9 @@ using DefaultNamespace;
 
             if (activeTargetCount <= 0)
             {
-                Debug.Log("wave ended, all targets returned");
+                Debug.Log("Wave ended, all targets returned.");
                 GameEvents.OnWaveEnded?.Invoke();
             }
         }
     }
-
-
 }
