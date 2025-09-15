@@ -68,7 +68,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
-    - _noise_Amp: 0.37
+    - _noise_Amp: 0
     - _noise_Scale: 10
     - _speed: 0
     - _waves: 9.96

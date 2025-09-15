@@ -1,22 +1,53 @@
+using System;
+using DefaultNamespace;
+using DefaultNamespace.Player;
 using DefaultNamespace.ScoreSystem;
 using Hidden_Points_System;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.EventSystems;
 
 public class Target : MonoBehaviour
 {
     [SerializeField] public float lifeTime ;
     private float timer;
-    private bool isActive;
+    private bool isActive = true;
+    private bool hasReturned = false;
     [SerializeField] private Color originalColor;
-
-    
+    [SerializeField] private GameObject halo;
     [SerializeField] private SpriteRenderer sr;
+    public event Action OnTargetReturned;
+    private void Awake()
+    {
+        if (halo == null)
+        {
+            Transform haloTransform = transform.Find("Halo");
+            if (haloTransform != null)
+                halo = haloTransform.gameObject;
+        }
+
+        if (sr == null)
+        {
+            sr = GetComponent<SpriteRenderer>();
+        }
+    }
 
     void Start()
     {
         timer = lifeTime;
+        Activate(lifeTime, transform.position);
+    }
+    
+    private void OnDisable()
+    {
+        if (!hasReturned)
+        {
+            hasReturned = true;
+            OnTargetReturned?.Invoke();
+        }
+
+        hasReturned = false; 
     }
 
     public void Activate(float newLifeTime, Vector2 newPosition)
@@ -25,30 +56,81 @@ public class Target : MonoBehaviour
         lifeTime = newLifeTime;
         timer = newLifeTime;
         isActive = true;
-        sr.color = originalColor;
+
+        if (sr != null)
+            sr.color = originalColor;
+
+        if (halo != null)
+            halo.SetActive(false);
+
+        StopAllCoroutines();
         gameObject.SetActive(true);
     }
 
-    void Update()
+    private void Update()
     {
         if (!isActive) return;
+
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
             StartCoroutine(Deactivate(false));
+            return;
+        }
+
+        HandleInput();
+    }
+    private void HandleInput()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began && !IsPointerOverUI(touch.fingerId))
+            {
+                TryHit(Camera.main.ScreenToWorldPoint(touch.position));
+            }
+        }
+
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
+        {
+            TryHit(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+#endif
+
+    }
+
+    private void TryHit(Vector3 worldPosition)
+    {
+        Vector2 pos2D = new Vector2(worldPosition.x, worldPosition.y);
+        RaycastHit2D hit = Physics2D.Raycast(pos2D, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        {
+            StartCoroutine(Deactivate(true));
         }
     }
 
-    void OnMouseDown()
+    private bool IsPointerOverUI(int fingerId = -1)
+    {
+        if (fingerId >= 0)
+            return EventSystem.current.IsPointerOverGameObject(fingerId);
+        else
+            return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    /*void OnMouseDown()
     {
         if (isActive)
         {
             StartCoroutine(Deactivate(true));
         }
-    }
+    }*/
     
     private System.Collections.IEnumerator Deactivate(bool clicked)
     {
+        Debug.Log("Target Deactivated. Clicked: " + clicked);
         isActive = false;
         
         if (clicked)
@@ -56,14 +138,35 @@ public class Target : MonoBehaviour
             ScoreManager score = ScoreManager.Instance;
             if (score != null)
                 score.AddScore(10);
+            if (halo != null)
+                halo.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            if (halo != null)
+                halo.SetActive(false);
+        }
+        else
+        {
+            sr.color = Color.red;
+            yield return new WaitForSeconds(0.3f);
+            HealthSystem.Instance.TakeDamage(1);
         }
 
-        sr.color = clicked ? Color.red : Color.black;
-        yield return new WaitForSeconds(0.3f);
-
         gameObject.SetActive(false);
-
         TargetPool.Instance.ReturnToPool(this);
+    }
+    public void ResetTarget()
+    {
+        timer = 0f;
+        isActive = false;
+        hasReturned = false;
+        
+        if (halo != null)
+            halo.SetActive(false);
+
+        if (sr != null)
+            sr.color = originalColor;
+        
+        StopAllCoroutines();
     }
 }
 

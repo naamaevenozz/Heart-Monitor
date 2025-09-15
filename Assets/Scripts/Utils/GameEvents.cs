@@ -11,5 +11,9 @@ namespace DefaultNamespace
         public static Action GameOver;
         public static Action GameStarted;
         public static Action Intro;
+        public static Action OnWaveEnded;
+        public static Action<WaveConfig> OnWaveStarted;
+
+
     }
 }
