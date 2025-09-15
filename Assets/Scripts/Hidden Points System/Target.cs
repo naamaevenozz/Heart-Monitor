@@ -13,11 +13,9 @@ public class Target : MonoBehaviour
     [SerializeField] public float lifeTime ;
     private float timer;
     private bool isActive = true;
-    private bool hasReturned = false;
     [SerializeField] private Color originalColor;
     [SerializeField] private GameObject halo;
     [SerializeField] private SpriteRenderer sr;
-    public event Action OnTargetReturned;
     private void Awake()
     {
         if (halo == null)
@@ -37,17 +35,6 @@ public class Target : MonoBehaviour
     {
         timer = lifeTime;
         Activate(lifeTime, transform.position);
-    }
-    
-    private void OnDisable()
-    {
-        if (!hasReturned)
-        {
-            hasReturned = true;
-            OnTargetReturned?.Invoke();
-        }
-
-        hasReturned = false; 
     }
 
     public void Activate(float newLifeTime, Vector2 newPosition)
@@ -158,7 +145,6 @@ public class Target : MonoBehaviour
     {
         timer = 0f;
         isActive = false;
-        hasReturned = false;
         
         if (halo != null)
             halo.SetActive(false);

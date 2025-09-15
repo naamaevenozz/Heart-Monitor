@@ -13,7 +13,7 @@ namespace Hidden_Points_System
         private float screenLeftX;
         private float screenRightX;
 
-        private int activeTargetCount = 0;
+        private readonly System.Collections.Generic.List<Target> spawnedTargets = new();
 
         private void OnEnable()
         {
@@ -36,18 +36,21 @@ namespace Hidden_Points_System
 
         private void HandleWaveStarted(WaveConfig config)
         {
-            StartCoroutine(SpawnTargetsCoroutine(config));
+            StartCoroutine(SpawnWave(config));
         }
 
-        private IEnumerator SpawnTargetsCoroutine(WaveConfig config)
+        private IEnumerator SpawnWave(WaveConfig config)
         {
-            activeTargetCount = config.targetAmount;
+            spawnedTargets.Clear();
 
             for (int i = 0; i < config.targetAmount; i++)
             {
                 SpawnSingleTarget(config.lifetime, config);
                 yield return new WaitForSeconds(config.spawnDelay);
             }
+
+            // אחרי שכל המטרות שוגרו — נתחיל לעקוב מתי הן נעלמות
+            yield return StartCoroutine(WaitForAllTargetsToDisappear());
         }
 
         private void SpawnSingleTarget(float lifeTime, WaveConfig config)
@@ -60,9 +63,6 @@ namespace Hidden_Points_System
                 return;
             }
 
-            target.OnTargetReturned -= HandleTargetReturned;
-            target.OnTargetReturned += HandleTargetReturned;
-
             float minY = defaultMinY;
             float maxY = defaultMaxY;
 
@@ -72,17 +72,33 @@ namespace Hidden_Points_System
             );
 
             target.Activate(lifeTime, spawnPos);
+            spawnedTargets.Add(target);
         }
 
-        private void HandleTargetReturned()
+        private IEnumerator WaitForAllTargetsToDisappear()
         {
-            activeTargetCount--;
-
-            if (activeTargetCount <= 0)
+            while (true)
             {
-                Debug.Log("Wave ended, all targets returned.");
-                GameEvents.OnWaveEnded?.Invoke();
+                // כל עוד יש מטרות פעילות
+                bool anyStillActive = false;
+
+                foreach (var target in spawnedTargets)
+                {
+                    if (target != null && target.gameObject.activeSelf)
+                    {
+                        anyStillActive = true;
+                        break;
+                    }
+                }
+
+                if (!anyStillActive)
+                    break;
+
+                yield return null;
             }
+
+            Debug.Log("Wave ended! All targets are gone.");
+            GameEvents.OnWaveEnded?.Invoke();
         }
     }
 }
