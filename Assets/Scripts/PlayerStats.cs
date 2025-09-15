@@ -35,6 +35,9 @@ public class PlayerStats : MonoBehaviour
     {
         lives = Mathf.Max(0, lives - Mathf.Max(0, delta));
         GameEvents.LivesChanged?.Invoke(lives);
-        GameEvents.PlayerLostLife?.Invoke();
+        if (lives <= 0)
+        {
+            GameEvents.GameOver?.Invoke();
+        }
     }
 }

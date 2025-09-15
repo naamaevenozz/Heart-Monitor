@@ -1,3 +1,4 @@
+using DefaultNamespace.ScoreSystem;
 using Hidden_Points_System;
 using UnityEditor.Build.Content;
 using UnityEngine;
@@ -52,9 +53,9 @@ public class Target : MonoBehaviour
         
         if (clicked)
         {
-            PlayerStats stats = PlayerStats.Instance;
-            if (stats != null)
-                stats.AddScore(10);
+            ScoreManager score = ScoreManager.Instance;
+            if (score != null)
+                score.AddScore(10);
         }
 
         sr.color = clicked ? Color.red : Color.black;
