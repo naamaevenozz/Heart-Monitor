@@ -49,6 +49,13 @@ public class Target : MonoBehaviour
     private System.Collections.IEnumerator Deactivate(bool clicked)
     {
         isActive = false;
+        
+        if (clicked)
+        {
+            PlayerStats stats = PlayerStats.Instance;
+            if (stats != null)
+                stats.AddScore(10);
+        }
 
         sr.color = clicked ? Color.red : Color.black;
         yield return new WaitForSeconds(0.3f);
