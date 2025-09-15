@@ -27,6 +27,8 @@ namespace Hidden_Points_System
             {
                 SpawnTarget(lifeTime);
             }
+
+            NextWave();
         }
 
         void SpawnTarget(float lifeTime)
