@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      green-neon-arrow-1_0: 3850693917722665157
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
