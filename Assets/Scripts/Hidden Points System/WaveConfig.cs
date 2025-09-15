@@ -1,9 +1,10 @@
-﻿using System.Drawing;
+﻿using UnityEngine;
 
 namespace Hidden_Points_System
 {
-    [System.Serializable]
-    public class WaveConfig {
+    [CreateAssetMenu(fileName = "WaveConfig", menuName = "Game/WaveConfig")]
+    public class WaveConfig : ScriptableObject
+    {
         public float speed;
         public int waveAmount;
         public float noiseAmp;
@@ -14,5 +15,4 @@ namespace Hidden_Points_System
         public float spawnDelay;
         public float lifetime;
     }
-
 }
