@@ -2502,14 +2502,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb071e661382b30479362ddc430ebacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 69be6fe8dd2caf641916b28f272abca3, type: 2}
+  material: {fileID: 0}
   parameters:
-    speed: 0.1
-    wavesAmount: 6.65
-    wavesAmp: 0.3
-    noiseAmp: 0.37
+    speed: 0.2
+    wavesAmount: 5
+    wavesAmp: 0.2
+    noiseAmp: 0.5
     noiseScale: 10
-    baseColor: {r: 0.6603774, g: 0.3769135, b: 0.3769135, a: 1}
+    baseColor: {r: 0, g: 1, b: 1, a: 1}
   resolution: 200
   rangeX: {x: 0, y: 5}
   yOffset: 0
