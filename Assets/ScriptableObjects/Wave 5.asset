@@ -19,7 +19,7 @@ MonoBehaviour:
   lifetime: 5
   wavesAmount: 5
   wavesAmp: 0.214
-  speed: 0.09
+  speed: 0.06
   noiseAmp: 0
   noiseScale: 0
   color: {x: 0, y: 0, z: 0, w: 0}
