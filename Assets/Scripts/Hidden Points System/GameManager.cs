@@ -21,13 +21,20 @@ namespace Hidden_Points_System
         {
             waveIndex  = 0;
             // Should be called from UI event
-            OnGameStart();
+            //OnGameStart();
         }
 
         private void OnEnable()
         {
             GameEvents.OnWaveEnded += NextWave;
             // GameEvents.GameOver += EndGame;
+            GameEvents.GameStarted += OnGameStart;
+        }
+        private void OnDisable()
+        {
+            GameEvents.OnWaveEnded -= NextWave;
+            // GameEvents.GameOver -= EndGame;
+            GameEvents.GameStarted -= OnGameStart;
         }
 
         private void EndGame()

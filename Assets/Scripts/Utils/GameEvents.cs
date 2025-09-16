@@ -5,8 +5,6 @@ namespace DefaultNamespace
 {
     public class GameEvents
     {
-        public static Action RestartLevel;
-        public static Action StartLevel;
         public static Action<int> ScoreChanged;    
         public static Action<int> LivesChanged; 
         public static Action GameOver;
@@ -15,6 +13,7 @@ namespace DefaultNamespace
         public static Action OnWaveEnded;
         public static Action<WaveConfig> OnWaveStarted;
         public static Action OnTargetSpawn;
+        public static Action OnHighScoreChanged;
 
 
     }

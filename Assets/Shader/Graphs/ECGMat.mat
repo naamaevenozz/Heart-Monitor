@@ -73,7 +73,7 @@ Material:
     - _speed: 0.05
     - _waves: 9.96
     - _waves_Amount: 11
-    - _waves_Amp: 0
+    - _waves_Amp: 0.214
     - _waves_Number: 3.5
     m_Colors:
     - _Color: {r: 1.0440712, g: 22.186512, b: 0.7830529, a: 1}

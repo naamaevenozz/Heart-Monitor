@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-namespace DefaultNamespace.ScoreSystem
+using DefaultNamespace;
+using DefaultNamespace.ScoreSystem;
+
+namespace ScoreSystem
 {
     public class HighScoreManager : MonoBehaviour
     {
         public static HighScoreManager Instance { get; private set; }
 
-        private string highScoreFilePath;
         private int highScore = 0;
         public int HighScore => highScore;
 
@@ -23,10 +25,9 @@ namespace DefaultNamespace.ScoreSystem
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            highScoreFilePath = Path.Combine(Application.persistentDataPath, "highscore.txt");
             LoadHighScore();
         }
-        
+
         private void OnEnable()
         {
             GameEvents.Intro += OnIntro;
@@ -38,7 +39,7 @@ namespace DefaultNamespace.ScoreSystem
             GameEvents.Intro -= OnIntro;
             GameEvents.GameOver -= OnGameEnded;
         }
-        
+
         private void OnIntro()
         {
             LoadHighScore();
@@ -53,24 +54,7 @@ namespace DefaultNamespace.ScoreSystem
 
         private void LoadHighScore()
         {
-            if (File.Exists(highScoreFilePath))
-            {
-                string content = File.ReadAllText(highScoreFilePath);
-                if (int.TryParse(content, out int savedScore))
-                {
-                    highScore = savedScore;
-                }
-                else
-                {
-                    Debug.LogWarning("Failed to parse high score from file.");
-                    highScore = 0;
-                }
-            }
-            else
-            {
-                highScore = 0;
-            }
-
+            highScore = PlayerPrefs.GetInt("HighScore", 0); // 0 ברירת מחדל אם אין ערך שמור
             Debug.Log($"High Score Loaded: {highScore}");
         }
 
@@ -79,8 +63,10 @@ namespace DefaultNamespace.ScoreSystem
             if (finalScore > highScore)
             {
                 highScore = finalScore;
-                File.WriteAllText(highScoreFilePath, highScore.ToString());
+                PlayerPrefs.SetInt("HighScore", highScore);
+                PlayerPrefs.Save(); // חשוב לשמירה מיידית
                 Debug.Log($"New High Score Saved: {highScore}");
+                GameEvents.OnHighScoreChanged?.Invoke();
             }
         }
     }

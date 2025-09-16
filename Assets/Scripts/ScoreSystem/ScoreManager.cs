@@ -31,6 +31,7 @@ namespace DefaultNamespace.ScoreSystem
         private void OnIntro()
         {
             score = 0;
+            GameEvents.ScoreChanged?.Invoke(score);
         }
     }
 }

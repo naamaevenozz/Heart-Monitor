@@ -1,6 +1,9 @@
+using DefaultNamespace;
 using UnityEngine;
 using TMPro; 
 using DefaultNamespace.ScoreSystem;
+using ScoreSystem;
+
 namespace UI
 {
     public class HighScoreUI : MonoBehaviour
@@ -11,6 +14,11 @@ namespace UI
         private void OnEnable()
         {
             UpdateTexts();
+            GameEvents.OnHighScoreChanged+=UpdateTexts;
+        }
+        private void OnDisable()
+        {
+            GameEvents.OnHighScoreChanged-=UpdateTexts;
         }
 
         private void UpdateTexts()

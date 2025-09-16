@@ -11,6 +11,7 @@ namespace DefaultNamespace.UI
         void OnEnable()
         {
             GameEvents.ScoreChanged += UpdateScore;
+            UpdateScore(0); 
         }
 
         void OnDisable()

@@ -13,17 +13,20 @@ namespace Hidden_Points_System
 
         private float screenLeftX;
         private float screenRightX;
+        //private bool isBetweenGames = true;
 
         private readonly System.Collections.Generic.List<Target> spawnedTargets = new();
 
         private void OnEnable()
         {
+           // GameEvents.GameStarted += OnStartGame;
             GameEvents.OnWaveStarted += HandleWaveStarted;
             GameEvents.GameOver += Reset;
         }
 
         private void OnDisable()
         {
+            //GameEvents.GameStarted -= OnStartGame;
             GameEvents.OnWaveStarted -= HandleWaveStarted;
             GameEvents.GameOver -= Reset;
         }
@@ -105,6 +108,7 @@ namespace Hidden_Points_System
 
         private void Reset()
         {
+            //isBetweenGames = true;
             StopAllCoroutines();
             foreach (var target in spawnedTargets)
             {
@@ -116,5 +120,10 @@ namespace Hidden_Points_System
             }
             spawnedTargets.Clear();
         }
+        
+        /*private void OnStartGame()
+        {
+            isBetweenGames = false;
+        }*/
     }
 }
