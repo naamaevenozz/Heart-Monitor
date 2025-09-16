@@ -1,58 +1,58 @@
-﻿using UnityEngine;
+﻿using System;
+using DefaultNamespace;
+using UnityEditor.Analytics;
+using UnityEngine;
 
 namespace Hidden_Points_System
 {
 
     public class GameManager : MonoBehaviour
     {
-        // [SerializeField] public Rect spawnArea;
         [SerializeField] float xMin ;
         [SerializeField] float xMax ;
         [SerializeField] float yMin ;
         [SerializeField] float yMax ;
          public float baseLifeTime ;
-         public int wave = 1;
+         [SerializeField] WaveConfig [] waveConfigs;
+         [SerializeField] private WaveConfig finalWave;
+         public int waveIndex ;
 
         void Start()
         {
+            waveIndex  = 0;
+            // Should be called from UI event
+            OnGameStart();
+        }
+
+        private void OnEnable()
+        {
+            GameEvents.OnWaveEnded += NextWave;
+            GameEvents.GameOver += EndGame;
+        }
+
+        private void EndGame()
+        { 
+            GameEvents.OnWaveStarted?.Invoke(finalWave);
+            
+        }
+
+        private void NextWave()
+        {
+            Debug.Log($"Next wave at {waveIndex}");
             StartWave();
         }
 
+        void OnGameStart()
+        {
+            StartWave();
+        }
         void StartWave()
         {
-            int targetsThisWave = Mathf.Min(1 + wave / 2, 5); 
-            // float lifeTime = Mathf.Max(baseLifeTime - (wave * 0.2f), 0.5f);
-            float lifeTime = 10f;
-            for (int i = 0; i < targetsThisWave; i++)
-            {
-                //SpawnTarget(lifeTime);
-            }
-
-            NextWave();
+            WaveConfig waveConfig = waveConfigs[waveIndex];
+            GameEvents.OnWaveStarted?.Invoke(waveConfig);
+            waveIndex++;
         }
 
-        /*void SpawnTarget(float lifeTime)
-        {
-            Target t = TargetPool.Instance.Get();
-            if (t != null)
-            {
-                // Vector2 pos = new Vector2(
-                //     Random.Range(spawnArea.xMin, spawnArea.xMax),
-                //     Random.Range(spawnArea.yMin, spawnArea.yMax)
-                // );
-                // Vector2 pos = new Vector2(Random.Range(xBound, yBound), Random.Range(yBound, xBound));
-                float x = Random.Range(xMin, xMax);
-                float y = Random.Range(yMin, yMax);
-                Vector2 pos = new Vector2(x, y);
-                t.Activate(lifeTime, pos);
-            }
-        }*/
-
-        public void NextWave()
-        {
-            wave++;
-            StartWave();
-        }
     }
 
 }

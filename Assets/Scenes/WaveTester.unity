@@ -1680,6 +1680,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065506879}
   m_CullTransparentMesh: 1
+--- !u!1 &1219352195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219352197}
+  - component: {fileID: 1219352196}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1219352196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219352195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19add9354d2043678b8c746af53ee236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMin: 0
+  xMax: 0
+  yMin: 0
+  yMax: 0
+  baseLifeTime: 0
+  waveConfigs:
+  - {fileID: 11400000, guid: e8fb48ae8791b1d4583a73d01d2ed5ac, type: 2}
+  - {fileID: 11400000, guid: 3a6c5299fdca39e49b72a52f66cbc6fb, type: 2}
+  - {fileID: 11400000, guid: 4555279679120f94da45187f644eb8c5, type: 2}
+  - {fileID: 11400000, guid: 5d91029642f42ba40937c09da9665133, type: 2}
+  - {fileID: 11400000, guid: 160d8c29e8b84f84082ff3c5cad2fe9b, type: 2}
+  - {fileID: 11400000, guid: 3f26c303a418cb740b218014271ee9d8, type: 2}
+  - {fileID: 11400000, guid: 315454d6c5c83c945b422b614f1fbe67, type: 2}
+  - {fileID: 11400000, guid: a834b31e083ee0a48950547e1ab97a9c, type: 2}
+  - {fileID: 11400000, guid: e4f06efcf2be42047a1607c32843bccd, type: 2}
+  - {fileID: 11400000, guid: d84c82f090e81b24e9b07dab41b28dec, type: 2}
+  finalWave: {fileID: 11400000, guid: ac734e48053205b48a5b1b28ddf07ce5, type: 2}
+  waveIndex: 0
+--- !u!4 &1219352197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219352195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2873975, y: 0.9760012, z: -0.031500276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1234282140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,17 +2577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb071e661382b30479362ddc430ebacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  parameters:
-    speed: 0.2
-    wavesAmount: 5
-    wavesAmp: 0.2
-    noiseAmp: 0.5
-    noiseScale: 10
-    baseColor: {r: 0, g: 1, b: 1, a: 1}
-  resolution: 200
-  rangeX: {x: 0, y: 5}
-  yOffset: 0
+  material: {fileID: 2100000, guid: 69be6fe8dd2caf641916b28f272abca3, type: 2}
 --- !u!120 &1878541287
 LineRenderer:
   serializedVersion: 2
@@ -2703,7 +2755,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941101787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0bec9a398f245d694397cc265d9b234, type: 3}
   m_Name: 
@@ -2893,8 +2945,9 @@ MonoBehaviour:
   yMin: -2
   yMax: 2
   baseLifeTime: 2
-  wave: 1
   waveConfigs: []
+  finalWave: {fileID: 0}
+  waveIndex: 0
 --- !u!4 &1998302174
 Transform:
   m_ObjectHideFlags: 0
@@ -2930,3 +2983,4 @@ SceneRoots:
   - {fileID: 939168344}
   - {fileID: 1838406170}
   - {fileID: 355334274}
+  - {fileID: 1219352197}

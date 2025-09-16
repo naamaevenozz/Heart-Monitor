@@ -42,6 +42,8 @@ namespace Hidden_Points_System
         private IEnumerator SpawnWave(WaveConfig config)
         {
             spawnedTargets.Clear();
+            defaultMinY = config.minBound;
+            defaultMaxY = config.maxBound;
 
             for (int i = 0; i < config.targetAmount; i++)
             {
