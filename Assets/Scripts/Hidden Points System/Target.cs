@@ -3,7 +3,6 @@ using DefaultNamespace;
 using DefaultNamespace.Player;
 using DefaultNamespace.ScoreSystem;
 using Hidden_Points_System;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.EventSystems;
