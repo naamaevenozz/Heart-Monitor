@@ -1,23 +1,14 @@
+using Utils;
+
 namespace DefaultNamespace
 {
     using UnityEngine;
     namespace Player
     {
-        public class HealthSystem : MonoBehaviour
+        public class HealthSystem : MonoSingleton<HealthSystem>
         {
-            public static HealthSystem Instance { get; private set; }
             public int maxHealth = 1;
             private int currentHealth;
-            
-            private void Awake()
-            {
-                if (Instance != null && Instance != this)
-                {
-                    Destroy(gameObject); 
-                    return;
-                }
-                Instance = this;
-            }
             private void Start()
             {
                 currentHealth = maxHealth;

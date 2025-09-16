@@ -7,8 +7,9 @@ using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.EventSystems;
+using Utils;
 
-public class Target : MonoBehaviour
+public class Target : MonoBehaviour, IPoolable
 {
     [SerializeField] public float lifeTime ;
     private float timer;
@@ -139,9 +140,10 @@ public class Target : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-        TargetPool.Instance.ReturnToPool(this);
+        TargetPool.Instance.Return(this);
     }
-    public void ResetTarget()
+
+    public void Reset()
     {
         timer = 0f;
         isActive = false;

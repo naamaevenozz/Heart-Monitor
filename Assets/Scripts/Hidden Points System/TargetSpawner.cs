@@ -55,7 +55,7 @@ namespace Hidden_Points_System
 
         private void SpawnSingleTarget(float lifeTime, WaveConfig config)
         {
-            Target target = TargetPool.Instance.GetTarget();
+            Target target = TargetPool.Instance.Get();
 
             if (target == null)
             {

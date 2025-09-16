@@ -25,15 +25,15 @@ namespace Hidden_Points_System
             float lifeTime = 10f;
             for (int i = 0; i < targetsThisWave; i++)
             {
-                SpawnTarget(lifeTime);
+                //SpawnTarget(lifeTime);
             }
 
             NextWave();
         }
 
-        void SpawnTarget(float lifeTime)
+        /*void SpawnTarget(float lifeTime)
         {
-            Target t = TargetPool.Instance.GetTarget();
+            Target t = TargetPool.Instance.Get();
             if (t != null)
             {
                 // Vector2 pos = new Vector2(
@@ -46,7 +46,7 @@ namespace Hidden_Points_System
                 Vector2 pos = new Vector2(x, y);
                 t.Activate(lifeTime, pos);
             }
-        }
+        }*/
 
         public void NextWave()
         {

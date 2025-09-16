@@ -14,6 +14,7 @@ namespace DefaultNamespace
         public static Action Intro;
         public static Action OnWaveEnded;
         public static Action<WaveConfig> OnWaveStarted;
+        public static Action OnTargetSpawn;
 
 
     }
