@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd7072363a55e9479d4af9714074bba, type: 3}
+  m_Name: AudioSettings
+  m_EditorClassIdentifier: 
+  audioConfigs:
+  - name: ShortBeep
+    clip: {fileID: 8300000, guid: d39eb0265243547a882d473cda37f1b7, type: 3}
+    volume: 0.5
+    loop: 0
+  - name: LongBeep
+    clip: {fileID: 8300000, guid: d60a5409870434bba95c51891f88149d, type: 3}
+    volume: 0.5
+    loop: 0

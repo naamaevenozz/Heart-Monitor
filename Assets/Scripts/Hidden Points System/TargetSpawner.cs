@@ -1,5 +1,6 @@
 using DefaultNamespace;
 using System.Collections;
+using Sound;
 using UnityEngine;
 
 namespace Hidden_Points_System
@@ -48,10 +49,10 @@ namespace Hidden_Points_System
             for (int i = 0; i < config.targetAmount; i++)
             {
                 SpawnSingleTarget(config.lifetime, config);
+                SoundManager.Instance.PlaySound("ShortBeep", transform);
                 yield return new WaitForSeconds(config.spawnDelay);
             }
 
-            // אחרי שכל המטרות שוגרו — נתחיל לעקוב מתי הן נעלמות
             yield return StartCoroutine(WaitForAllTargetsToDisappear());
         }
 
@@ -65,12 +66,10 @@ namespace Hidden_Points_System
                 return;
             }
 
-            float minY = defaultMinY;
-            float maxY = defaultMaxY;
-
+            
             Vector2 spawnPos = new Vector2(
                 UnityEngine.Random.Range(screenLeftX, screenRightX),
-                UnityEngine.Random.Range(minY, maxY)
+                UnityEngine.Random.Range(defaultMinY, defaultMaxY)
             );
 
             target.Activate(lifeTime, spawnPos);
@@ -81,7 +80,6 @@ namespace Hidden_Points_System
         {
             while (true)
             {
-                // כל עוד יש מטרות פעילות
                 bool anyStillActive = false;
 
                 foreach (var target in spawnedTargets)

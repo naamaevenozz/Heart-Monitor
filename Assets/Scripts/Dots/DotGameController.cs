@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
@@ -34,6 +35,7 @@ public class DotGameController : MonoBehaviour
     Camera cam;
     float switchTimer;
 
+    [Obsolete("Obsolete")]
     void Start()
     {
         cam = Camera.main;
