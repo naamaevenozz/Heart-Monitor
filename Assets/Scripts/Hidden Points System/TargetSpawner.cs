@@ -19,11 +19,13 @@ namespace Hidden_Points_System
         private void OnEnable()
         {
             GameEvents.OnWaveStarted += HandleWaveStarted;
+            GameEvents.GameOver += Reset;
         }
 
         private void OnDisable()
         {
             GameEvents.OnWaveStarted -= HandleWaveStarted;
+            GameEvents.GameOver -= Reset;
         }
 
         private void Start()
@@ -99,6 +101,20 @@ namespace Hidden_Points_System
 
             Debug.Log("Wave ended! All targets are gone.");
             GameEvents.OnWaveEnded?.Invoke();
+        }
+
+        private void Reset()
+        {
+            StopAllCoroutines();
+            foreach (var target in spawnedTargets)
+            {
+                if (target != null && target.gameObject.activeSelf)
+                {
+                    target.gameObject.SetActive(false);
+                    TargetPool.Instance.Return(target);
+                }
+            }
+            spawnedTargets.Clear();
         }
     }
 }

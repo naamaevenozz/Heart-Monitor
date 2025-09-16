@@ -11,14 +11,22 @@ namespace DefaultNamespace
         {
             public int maxHealth = 1;
             private int currentHealth;
-            private void Start()
+
+            private void OnEnable()
             {
-                currentHealth = maxHealth;
-                GameEvents.LivesChanged?.Invoke(currentHealth);
+                GameEvents.Intro += Reset;
             }
 
-             
+            private void OnDisable()
+            {
+                GameEvents.Intro -= Reset;
+            }
 
+            private void Start()
+            {
+                Reset();
+            }
+            
             public void TakeDamage(int amount)
             {
                 currentHealth -= amount;
@@ -36,6 +44,12 @@ namespace DefaultNamespace
                 currentHealth += amount;
                 if (currentHealth > maxHealth)
                     currentHealth = maxHealth;
+                GameEvents.LivesChanged?.Invoke(currentHealth);
+            }
+            
+            private void Reset()
+            {
+                currentHealth = maxHealth;
                 GameEvents.LivesChanged?.Invoke(currentHealth);
             }
         }

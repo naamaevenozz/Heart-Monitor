@@ -1,4 +1,5 @@
 
+using System;
 using Utils;
 
 namespace DefaultNamespace.ScoreSystem
@@ -9,12 +10,27 @@ namespace DefaultNamespace.ScoreSystem
     {
         [SerializeField] int score = 0;
 
+        private void OnEnable()
+        {
+            GameEvents.Intro += OnIntro;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.Intro -= OnIntro;
+        }
+
         public int Score => score;
         
         public void AddScore(int delta)
         {
             score += Mathf.Max(0, delta);
             GameEvents.ScoreChanged?.Invoke(score);
+        }
+        
+        private void OnIntro()
+        {
+            score = 0;
         }
     }
 }

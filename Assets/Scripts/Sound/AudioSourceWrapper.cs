@@ -40,4 +40,10 @@ public class AudioSourceWrapper : MonoBehaviour, IPoolable
         audioSource.volume = 1f;
         isPlaying = false;
     }
+    
+    public bool IsPlaying()
+    {
+        return audioSource != null && audioSource.isPlaying;
+    }
+
 }

@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using Utilities;
 using Utils;
@@ -9,9 +12,18 @@ namespace Sound
     public class SoundManager : MonoSingleton<SoundManager>
     {
         [SerializeField] private AudioSettings settings;
-        private AudioSourceWrapper _backgroundMusic;
-        private AudioSourceWrapper openingMusic;
-        private AudioSourceWrapper endingMusic;
+        //private AudioSourceWrapper _backgroundMusic;
+        private void OnEnable()
+        {
+            GameEvents.Intro += StopAllSounds;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.Intro -= StopAllSounds;
+        }
+        
+        private readonly HashSet<AudioSourceWrapper> activeSounds = new HashSet<AudioSourceWrapper>();
 
         public void PlaySound(string audioName, Transform spawnTransform, float customVolume = -1f)
         {
@@ -22,6 +34,32 @@ namespace Sound
             soundObject.transform.position = spawnTransform.position;
             float finalVolume = (customVolume >= 0f) ? customVolume : config.volume;
             soundObject.Play(config.clip, finalVolume, config.loop);
+            
+            activeSounds.Add(soundObject);
+            StartCoroutine(WaitAndRemove(soundObject));
+            
+        }
+        
+        private IEnumerator WaitAndRemove(AudioSourceWrapper wrapper)
+        {
+            while (wrapper != null && wrapper.IsPlaying())
+            {
+                yield return null;
+            }
+
+            activeSounds.Remove(wrapper);
+        }
+        
+        public void StopAllSounds()
+        {
+            foreach (var sound in activeSounds)
+            {
+                sound.Reset(); 
+                sound.gameObject.SetActive(false);
+                SoundPool.Instance.Return(sound);
+            }
+
+            activeSounds.Clear();
         }
 
         private AudioConfig FindAudioConfig(string audioName)
