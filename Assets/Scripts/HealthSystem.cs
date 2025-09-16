@@ -1,3 +1,5 @@
+using System;
+using Sound;
 using Utils;
 
 namespace DefaultNamespace
@@ -15,6 +17,8 @@ namespace DefaultNamespace
                 GameEvents.LivesChanged?.Invoke(currentHealth);
             }
 
+             
+
             public void TakeDamage(int amount)
             {
                 currentHealth -= amount;
@@ -23,6 +27,7 @@ namespace DefaultNamespace
                 if (currentHealth <= 0)
                 {
                     GameEvents.GameOver?.Invoke();
+                    SoundManager.Instance.PlaySound("LongBeep", transform);
                 }
             }
             
