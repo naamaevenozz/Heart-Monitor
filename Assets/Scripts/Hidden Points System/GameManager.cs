@@ -27,13 +27,13 @@ namespace Hidden_Points_System
         private void OnEnable()
         {
             GameEvents.OnWaveEnded += NextWave;
-            GameEvents.GameOver += EndGame;
+            // GameEvents.GameOver += EndGame;
         }
 
         private void EndGame()
         { 
-            GameEvents.OnWaveStarted?.Invoke(finalWave);
-            
+            GameEvents.OnWaveStarted?.Invoke(waveConfigs[10]);
+            waveIndex = 10;
         }
 
         private void NextWave()

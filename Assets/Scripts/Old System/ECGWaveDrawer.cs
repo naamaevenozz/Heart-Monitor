@@ -1,5 +1,6 @@
 using DefaultNamespace;
 using Hidden_Points_System;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -29,6 +30,14 @@ public class ECGWaveDrawer : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnWaveStarted += HandleWaveStarted;
+        GameEvents.GameOver += ResetFunc;
+
+    }
+
+    private void ResetFunc()
+    {
+        Debug.Log("Final wave from material controller");
+        material.SetFloat("_waves_Amp", 0);
     }
 
     private void HandleWaveStarted(WaveConfig obj)
@@ -39,6 +48,7 @@ public class ECGWaveDrawer : MonoBehaviour
         material.SetFloat("_noise_Amp", obj.noiseAmp);
         material.SetFloat("_noise_Scale", obj.noiseScale);
     }
+    
 
     void Update()
     {
