@@ -9,10 +9,12 @@ namespace Hidden_Points_System
         public int waveAmount;
         public float noiseAmp;
         public float noiseScale;
-        public Color color;
+        public Vector4 color;
 
         public int targetAmount;
         public float spawnDelay;
+        public float minBound;
+        public float maxBound;
         public float lifetime;
     }
 }
