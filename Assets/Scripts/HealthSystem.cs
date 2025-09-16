@@ -5,9 +5,19 @@ namespace DefaultNamespace
     {
         public class HealthSystem : MonoBehaviour
         {
+            public static HealthSystem Instance { get; private set; }
             public int maxHealth = 1;
             private int currentHealth;
-
+            
+            private void Awake()
+            {
+                if (Instance != null && Instance != this)
+                {
+                    Destroy(gameObject); 
+                    return;
+                }
+                Instance = this;
+            }
             private void Start()
             {
                 currentHealth = maxHealth;
