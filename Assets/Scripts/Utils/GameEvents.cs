@@ -14,7 +14,6 @@ namespace DefaultNamespace
         public static Action<WaveConfig> OnWaveStarted;
         public static Action OnTargetSpawn;
         public static Action OnHighScoreChanged;
-
-
+        public static Action<int> OnTargetCountChanged;
     }
 }

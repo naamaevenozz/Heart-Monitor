@@ -33,8 +33,8 @@ namespace Hidden_Points_System
 
         private void Start()
         {
-            Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
-            Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0));
+            Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)) * 0.9f;
+            Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)) * 0.9f;
 
             screenLeftX = left.x;
             screenRightX = right.x;
@@ -55,6 +55,7 @@ namespace Hidden_Points_System
             {
                 SpawnSingleTarget(config.lifetime, config);
                 SoundManager.Instance.PlaySound("ShortBeep", transform);
+                GameEvents.OnTargetCountChanged?.Invoke(1);
                 yield return new WaitForSeconds(config.spawnDelay);
             }
 
