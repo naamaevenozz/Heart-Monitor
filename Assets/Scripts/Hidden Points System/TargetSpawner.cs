@@ -55,6 +55,7 @@ namespace Hidden_Points_System
             {
                 SpawnSingleTarget(config.lifetime, config);
                 SoundManager.Instance.PlaySound("ShortBeep", transform);
+                GameEvents.OnTargetCountChanged?.Invoke(1);
                 yield return new WaitForSeconds(config.spawnDelay);
             }
 

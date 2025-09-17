@@ -140,6 +140,7 @@ public class Target : MonoBehaviour, IPoolable
 
         gameObject.SetActive(false);
         TargetPool.Instance.Return(this);
+        GameEvents.OnTargetCountChanged?.Invoke(-1);
     }
 
     public void Reset()
