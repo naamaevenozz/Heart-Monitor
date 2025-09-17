@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.benoitfreslon.vibration": "https://github.com/BenoitFreslon/Vibration.git",
     "com.unity.adaptiveperformance.google.android": "5.1.6",
     "com.unity.adaptiveperformance.samsung.android": "5.1.0",
     "com.unity.collab-proxy": "2.9.3",
