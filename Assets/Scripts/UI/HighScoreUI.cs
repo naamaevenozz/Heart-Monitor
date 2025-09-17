@@ -14,10 +14,12 @@ namespace UI
         {
             UpdateTexts();
             GameEvents.OnHighScoreChanged+=UpdateTexts;
+            GameEvents.GameOver+=UpdateTexts;
         }
         private void OnDisable()
         {
             GameEvents.OnHighScoreChanged-=UpdateTexts;
+            GameEvents.GameOver-=UpdateTexts;
         }
 
         private void UpdateTexts()

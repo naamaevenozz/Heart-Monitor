@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 193003503}
   - component: {fileID: 193003506}
   - component: {fileID: 193003505}
-  - component: {fileID: 193003504}
   m_Layer: 5
   m_Name: YourScore
   m_TagString: Untagged
@@ -261,20 +260,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 250}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &193003504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193003502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccb7be6f89ae4b548693c666e1d2f9c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highScoreText: {fileID: 193003505}
-  lastScoreText: {fileID: 0}
 --- !u!114 &193003505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,7 +953,6 @@ GameObject:
   - component: {fileID: 637965747}
   - component: {fileID: 637965750}
   - component: {fileID: 637965749}
-  - component: {fileID: 637965748}
   m_Layer: 5
   m_Name: 'HighScore '
   m_TagString: Untagged
@@ -995,20 +979,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &637965748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637965746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccb7be6f89ae4b548693c666e1d2f9c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highScoreText: {fileID: 637965749}
-  lastScoreText: {fileID: 0}
 --- !u!114 &637965749
 MonoBehaviour:
   m_ObjectHideFlags: 0
