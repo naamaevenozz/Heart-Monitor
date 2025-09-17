@@ -1,7 +1,7 @@
 using System;
 using DefaultNamespace;
 using DefaultNamespace.Player;
-using DefaultNamespace.ScoreSystem;
+using ScoreSystem;
 using Hidden_Points_System;
 using UnityEngine;
 using UnityEngine.Analytics;

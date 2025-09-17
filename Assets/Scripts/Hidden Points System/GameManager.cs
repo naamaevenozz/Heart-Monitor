@@ -17,11 +17,13 @@ namespace Hidden_Points_System
          [SerializeField] private WaveConfig finalWave;
          public int waveIndex ;
 
-        void Start()
+        
+         void Start()
         {
             waveIndex  = 0;
             // Should be called from UI event
             //OnGameStart();
+            GameEvents.Intro?.Invoke();
         }
 
         private void OnEnable()

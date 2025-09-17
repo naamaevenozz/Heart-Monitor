@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using DefaultNamespace;
-using DefaultNamespace.ScoreSystem;
+using ScoreSystem;
 
 namespace ScoreSystem
 {
@@ -11,8 +11,8 @@ namespace ScoreSystem
     {
         public static HighScoreManager Instance { get; private set; }
 
-        private int highScore = 0;
-        public int HighScore => highScore;
+        private int _highScore = 0;
+        public int HighScore => _highScore;
 
         private void Awake()
         {
@@ -31,41 +31,31 @@ namespace ScoreSystem
         private void OnEnable()
         {
             GameEvents.Intro += OnIntro;
-            GameEvents.GameOver += OnGameEnded;
         }
 
         private void OnDisable()
         {
             GameEvents.Intro -= OnIntro;
-            GameEvents.GameOver -= OnGameEnded;
         }
 
         private void OnIntro()
         {
             LoadHighScore();
-            Debug.Log($"[HighScoreManager] High score loaded: {highScore}");
-        }
-
-        private void OnGameEnded()
-        {
-            int finalScore = ScoreManager.Instance.Score;
-            TrySetNewHighScore(finalScore);
+            GameEvents.OnHighScoreChanged?.Invoke();
         }
 
         private void LoadHighScore()
         {
-            highScore = PlayerPrefs.GetInt("HighScore", 0); // 0 ברירת מחדל אם אין ערך שמור
-            Debug.Log($"High Score Loaded: {highScore}");
+            _highScore = PlayerPrefs.GetInt("HighScore", 0); 
         }
 
         public void TrySetNewHighScore(int finalScore)
         {
-            if (finalScore > highScore)
+            if (finalScore > _highScore)
             {
-                highScore = finalScore;
-                PlayerPrefs.SetInt("HighScore", highScore);
-                PlayerPrefs.Save(); // חשוב לשמירה מיידית
-                Debug.Log($"New High Score Saved: {highScore}");
+                _highScore = finalScore;
+                PlayerPrefs.SetInt("HighScore", _highScore);
+                PlayerPrefs.Save(); 
                 GameEvents.OnHighScoreChanged?.Invoke();
             }
         }
