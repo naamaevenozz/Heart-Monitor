@@ -70,10 +70,10 @@ Material:
     - _ZWrite: 0
     - _noise_Amp: 0
     - _noise_Scale: 0
-    - _speed: 0.09
+    - _speed: 0.05
     - _waves: 9.96
-    - _waves_Amount: 5
-    - _waves_Amp: 0
+    - _waves_Amount: 11
+    - _waves_Amp: 0.214
     - _waves_Number: 3.5
     m_Colors:
     - _Color: {r: 9.186691, g: 43.52657, b: 3.6956456, a: 1}
