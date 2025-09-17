@@ -1392,6 +1392,7 @@ GameObject:
   - component: {fileID: 939168346}
   - component: {fileID: 939168345}
   - component: {fileID: 939168347}
+  - component: {fileID: 939168348}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1455,6 +1456,18 @@ MonoBehaviour:
   introPanel: {fileID: 1162892087}
   gamePanel: {fileID: 1483515751}
   endPanel: {fileID: 1056024164}
+--- !u!114 &939168348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939168342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94f0b4089604f24936c1a7ecfc9b89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1014896422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,7 +2372,6 @@ MonoBehaviour:
   yMax: 0
   baseLifeTime: 0
   waveConfigs:
-  - {fileID: 11400000, guid: d9f042eebf8c98d47a7d4768777c785e, type: 2}
   - {fileID: 11400000, guid: e8fb48ae8791b1d4583a73d01d2ed5ac, type: 2}
   - {fileID: 11400000, guid: 3a6c5299fdca39e49b72a52f66cbc6fb, type: 2}
   - {fileID: 11400000, guid: 4555279679120f94da45187f644eb8c5, type: 2}
@@ -2418,6 +2430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 69be6fe8dd2caf641916b28f272abca3, type: 2}
+  introWaveConfig: {fileID: 11400000, guid: d9f042eebf8c98d47a7d4768777c785e, type: 2}
+  resetDuration: 1
 --- !u!120 &1878541287
 LineRenderer:
   serializedVersion: 2
