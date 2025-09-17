@@ -53,7 +53,9 @@ namespace Hidden_Points_System
 
         void OnGameStart()
         {
-            StartWave();
+            // StartWave();
+            
+            
         }
         void StartWave()
         {
