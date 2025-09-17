@@ -79,12 +79,12 @@ public class Target : MonoBehaviour, IPoolable
             }
         }
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
         {
             TryHit(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
-#endif
+#endif*/
 
     }
 
