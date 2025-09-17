@@ -11,11 +11,6 @@ namespace UI
         [SerializeField] private GameObject gamePanel;
         [SerializeField] private GameObject endPanel;
 
-        private void Awake()
-        {
-            ShowIntro();
-        }
-
         private void OnEnable()
         {
             GameEvents.Intro += ShowIntro;
@@ -50,16 +45,6 @@ namespace UI
             gamePanel.SetActive(false);
             endPanel.SetActive(true);
         }
-
-        /*public void OnIntroPanelClicked()
-        {
-            GameEvents.GameStarted?.Invoke();
-        }
-
-        public void OnEndPanelClicked()
-        {
-            GameEvents.Intro?.Invoke();
-        }*/
     }
 
 }

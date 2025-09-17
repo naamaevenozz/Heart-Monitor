@@ -1,7 +1,6 @@
 using DefaultNamespace;
 using UnityEngine;
 using TMPro; 
-using DefaultNamespace.ScoreSystem;
 using ScoreSystem;
 
 namespace UI
