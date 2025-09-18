@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAmount: 3
   spawnDelay: 5
-  minBound: -2
+  minBound: -1.9
   maxBound: 2.9
   lifetime: 5
   wavesAmount: 3.5
