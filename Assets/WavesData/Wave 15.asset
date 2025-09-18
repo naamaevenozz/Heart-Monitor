@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40a7c68414c84ddabecd1dc2c715dd52, type: 3}
-  m_Name: Wave 11
+  m_Name: Wave 15
   m_EditorClassIdentifier: 
   targetAmount: 3
   spawnDelay: 5
-  minBound: -4.15
-  maxBound: 0.67
-  lifetime: 0.15
+  minBound: -1.37
+  maxBound: 2.13
+  lifetime: 5
   wavesAmount: 1.6
-  wavesAmp: 0.042
-  speed: 0.45
-  noiseAmp: 0
-  noiseScale: 0
+  wavesAmp: 0.172
+  speed: 0.6
+  noiseAmp: 2
+  noiseScale: 25
   color: {x: 0, y: 0, z: 0, w: 0}
