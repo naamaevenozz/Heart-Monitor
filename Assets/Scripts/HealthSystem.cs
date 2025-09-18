@@ -35,7 +35,7 @@ namespace DefaultNamespace
                 if (currentHealth <= 0)
                 {
                     GameEvents.GameOver?.Invoke();
-                    SoundManager.Instance.PlaySound("LongBeep", transform);
+                    //SoundManager.Instance.PlaySound("LongBeep", transform);
                 }
             }
             
