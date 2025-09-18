@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave 10
   m_EditorClassIdentifier: 
   targetAmount: 3
-  spawnDelay: 5
+  spawnDelay: 2
   minBound: -4.15
   maxBound: 3.4
   lifetime: 5

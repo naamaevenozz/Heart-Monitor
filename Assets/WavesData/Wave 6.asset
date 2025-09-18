@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wave 6
   m_EditorClassIdentifier: 
   targetAmount: 3
-  spawnDelay: 5
-  minBound: -1.9
+  spawnDelay: 1.4
+  minBound: -2
   maxBound: 2.9
-  lifetime: 5
+  lifetime: 2.5
   wavesAmount: 3.5
   wavesAmp: 0.25
   speed: 0.45
