@@ -16,8 +16,8 @@ namespace Hidden_Points_System
         public float speed;
         public float noiseAmp;
         public float noiseScale;
-        public Vector4 color;
-
+        // public Vector4 color;
+    
         
     }
 }
