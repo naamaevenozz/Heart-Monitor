@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using DefaultNamespace.Player;
 using ScoreSystem;
+using Sound;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
@@ -126,6 +127,7 @@ namespace Hidden_Points_System
 
             gameObject.SetActive(false);
             TargetPool.Instance.Return(this);
+            SoundManager.Instance.PlaySound("HeartBeat", transform);
             GameEvents.OnTargetCountChanged?.Invoke(-1);
         }
 

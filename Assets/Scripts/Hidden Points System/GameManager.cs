@@ -1,5 +1,6 @@
 ﻿using System;
 using DefaultNamespace;
+using Sound;
 using UnityEditor.Analytics;
 using UnityEngine;
 
@@ -30,18 +31,19 @@ namespace Hidden_Points_System
         {
             GameEvents.OnWaveEnded += NextWave;
             GameEvents.GameStarted += OnGameStart;
+            //GameEvents.GameOver += EndGame;
         }
         private void OnDisable()
         {
             GameEvents.OnWaveEnded -= NextWave;
             GameEvents.GameStarted -= OnGameStart;
+            //GameEvents.GameOver -= EndGame;
         }
 
-        private void EndGame()
+        /*private void EndGame()
         { 
-            GameEvents.OnWaveStarted?.Invoke(waveConfigs[10]);
-            waveIndex = 10;
-        }
+            SoundManager.Instance.StopAllSounds();
+        }*/
 
         private void NextWave()
         {
@@ -51,6 +53,8 @@ namespace Hidden_Points_System
 
         void OnGameStart()
         {
+            //SoundManager.Instance.StopAllSounds();
+            //SoundManager.Instance.PlaySound("BackGround", transform);
             waveIndex = 0;
             StartWave();
         }

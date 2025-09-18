@@ -15,9 +15,21 @@ MonoBehaviour:
   audioConfigs:
   - name: ShortBeep
     clip: {fileID: 8300000, guid: d39eb0265243547a882d473cda37f1b7, type: 3}
-    volume: 0.5
+    volume: 0.25
     loop: 0
   - name: LongBeep
     clip: {fileID: 8300000, guid: d60a5409870434bba95c51891f88149d, type: 3}
-    volume: 0.5
+    volume: 0.25
     loop: 0
+  - name: HeartBeat
+    clip: {fileID: 8300000, guid: f718522ed1e4349a0b0e42c77d9fea63, type: 3}
+    volume: 2
+    loop: 0
+  - name: BackGround
+    clip: {fileID: 8300000, guid: 42ef20898c4f81942874e352c322d6bd, type: 3}
+    volume: 0.6
+    loop: 1
+  - name: Intro
+    clip: {fileID: 8300000, guid: 45e48a8b540334ff186e38d8a66e3fa6, type: 3}
+    volume: 0.25
+    loop: 1

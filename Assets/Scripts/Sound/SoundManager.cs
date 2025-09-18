@@ -15,14 +15,36 @@ namespace Sound
         //private AudioSourceWrapper _backgroundMusic;
         private void OnEnable()
         {
-            GameEvents.Intro += StopAllSounds;
+            GameEvents.Intro += OnIntro;
+            GameEvents.GameStarted += OnGameStart;
+            GameEvents.GameOver += EndGame;
         }
 
         private void OnDisable()
         {
-            GameEvents.Intro -= StopAllSounds;
+            GameEvents.Intro -= OnIntro;
+            GameEvents.GameStarted -= OnGameStart;
+            GameEvents.GameOver -= EndGame;
+        }
+
+        private void EndGame()
+        {
+            StopAllSounds();
+            PlaySound("LongBeep", transform);
+        }
+
+        private void OnIntro()
+        {
+            StopAllSounds();
+            PlaySound("Intro", transform);
         }
         
+        private void OnGameStart()
+        {
+            StopAllSounds();
+            PlaySound("BackGround", transform);
+        }
+
         private readonly HashSet<AudioSourceWrapper> activeSounds = new HashSet<AudioSourceWrapper>();
 
         public void PlaySound(string audioName, Transform spawnTransform, float customVolume = -1f)
