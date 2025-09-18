@@ -14,9 +14,9 @@ namespace VibrationSystem
 
     #if UNITY_ANDROID && !UNITY_EDITOR
         if (profile.pattern != null && profile.pattern.Length > 0)
-            Vibration.Vibrate(profile.pattern, profile.repeat);
+            Vibration.VibrateAndroid(profile.pattern, profile.repeat);
         else
-            Vibration.Vibrate(profile.durationMs);
+            Vibration.VibrateAndroid(profile.durationMs);
     #else
             Debug.Log($"[HAPTIC] Vibrate {profile.durationMs}ms");
     #endif
