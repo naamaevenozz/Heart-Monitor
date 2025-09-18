@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a7c68414c84ddabecd1dc2c715dd52, type: 3}
   m_Name: Wave 26
   m_EditorClassIdentifier: 
-  targetAmount: 6
-  spawnDelay: 1
+  targetAmount: 8
+  spawnDelay: 1.25
   minBound: -3.5
   maxBound: 3.8
   lifetime: 7
   wavesAmount: 5
   wavesAmp: 0.61
-  speed: 1
+  speed: 0.95
   noiseAmp: 3.8
   noiseScale: 2.28
   color: {x: 219, y: 68, z: 4, w: 255}

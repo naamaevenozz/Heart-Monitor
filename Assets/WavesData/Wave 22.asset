@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a7c68414c84ddabecd1dc2c715dd52, type: 3}
   m_Name: Wave 22
   m_EditorClassIdentifier: 
-  targetAmount: 6
-  spawnDelay: 1
+  targetAmount: 7
+  spawnDelay: 1.8
   minBound: -3.5
   maxBound: 3.8
-  lifetime: 7
+  lifetime: 3
   wavesAmount: 4
   wavesAmp: 1
-  speed: 1
+  speed: 0.8
   noiseAmp: 0
   noiseScale: 0
   color: {x: 219, y: 4, z: 14, w: 255}

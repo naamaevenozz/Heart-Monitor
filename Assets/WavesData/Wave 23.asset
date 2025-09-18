@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a7c68414c84ddabecd1dc2c715dd52, type: 3}
   m_Name: Wave 23
   m_EditorClassIdentifier: 
-  targetAmount: 6
+  targetAmount: 5
   spawnDelay: 1
   minBound: -0.02
   maxBound: 0.87
-  lifetime: 7
+  lifetime: 2
   wavesAmount: 3
   wavesAmp: 0.05
   speed: 1
