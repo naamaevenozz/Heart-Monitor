@@ -2853,7 +2853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 69be6fe8dd2caf641916b28f272abca3, type: 2}
-  introWaveConfig: {fileID: 0}
+  introWaveConfig: {fileID: 11400000, guid: d9f042eebf8c98d47a7d4768777c785e, type: 2}
   resetDuration: 1
 --- !u!120 &1878541287
 LineRenderer:
