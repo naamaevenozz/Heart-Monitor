@@ -2795,11 +2795,11 @@ MonoBehaviour:
   yMax: 0
   baseLifeTime: 0
   waveConfigs:
-  - {fileID: 11400000, guid: d84c82f090e81b24e9b07dab41b28dec, type: 2}
-  - {fileID: 11400000, guid: 0b2456bd7c142644cb60c31c70328fb6, type: 2}
-  - {fileID: 11400000, guid: 0b2456bd7c142644cb60c31c70328fb6, type: 2}
-  - {fileID: 11400000, guid: 0b2456bd7c142644cb60c31c70328fb6, type: 2}
-  - {fileID: 11400000, guid: 160d8c29e8b84f84082ff3c5cad2fe9b, type: 2}
+  - {fileID: 11400000, guid: bb47bd0460a5f334197771882c10bdca, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
   - {fileID: 11400000, guid: 3f26c303a418cb740b218014271ee9d8, type: 2}
   - {fileID: 11400000, guid: 315454d6c5c83c945b422b614f1fbe67, type: 2}
   - {fileID: 11400000, guid: a834b31e083ee0a48950547e1ab97a9c, type: 2}
