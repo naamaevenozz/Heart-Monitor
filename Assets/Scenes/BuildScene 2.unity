@@ -693,7 +693,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329410749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb7be6f89ae4b548693c666e1d2f9c6, type: 3}
   m_Name: 
@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 0, g: 0, b: 0, a: 1}
+    topLeft: {r: 0.42767292, g: 0.33756572, b: 0.33756572, a: 1}
     topRight: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
     bottomLeft: {r: 0.8117647, g: 1, b: 0.67058825, a: 1}
     bottomRight: {r: 0.4509804, g: 0.654902, b: 0.50980395, a: 1}
@@ -2368,7 +2368,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904521310}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccb7be6f89ae4b548693c666e1d2f9c6, type: 3}
   m_Name: 
@@ -3282,7 +3282,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Broken \nRhythm"
+  m_text: 'Monitor
+
+    Glitch'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 394c3c95919504bd19f43c0f46e2545f, type: 2}
   m_sharedMaterial: {fileID: -6359644857394542472, guid: 394c3c95919504bd19f43c0f46e2545f, type: 2}
@@ -3296,7 +3298,7 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 0, g: 0, b: 0, a: 1}
+    topLeft: {r: 0.2578616, g: 0.21974997, b: 0.21974997, a: 1}
     topRight: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
     bottomLeft: {r: 0.91823894, g: 0.85364115, b: 0.47066957, a: 1}
     bottomRight: {r: 0.4504568, g: 0.654088, b: 0.51169294, a: 1}
@@ -4190,7 +4192,36 @@ MonoBehaviour:
   yMax: 0
   baseLifeTime: 0
   waveConfigs:
+  - {fileID: 11400000, guid: e8fb48ae8791b1d4583a73d01d2ed5ac, type: 2}
+  - {fileID: 11400000, guid: 3a6c5299fdca39e49b72a52f66cbc6fb, type: 2}
+  - {fileID: 11400000, guid: 4555279679120f94da45187f644eb8c5, type: 2}
+  - {fileID: 11400000, guid: 5d91029642f42ba40937c09da9665133, type: 2}
+  - {fileID: 11400000, guid: 160d8c29e8b84f84082ff3c5cad2fe9b, type: 2}
+  - {fileID: 11400000, guid: 3f26c303a418cb740b218014271ee9d8, type: 2}
+  - {fileID: 11400000, guid: 315454d6c5c83c945b422b614f1fbe67, type: 2}
+  - {fileID: 11400000, guid: a834b31e083ee0a48950547e1ab97a9c, type: 2}
+  - {fileID: 11400000, guid: e4f06efcf2be42047a1607c32843bccd, type: 2}
+  - {fileID: 11400000, guid: d84c82f090e81b24e9b07dab41b28dec, type: 2}
+  - {fileID: 11400000, guid: 0b2456bd7c142644cb60c31c70328fb6, type: 2}
+  - {fileID: 11400000, guid: 88f074f46cae801438ecb841d4be139e, type: 2}
+  - {fileID: 11400000, guid: bd2786c96139ab54890c4c0e99206e87, type: 2}
+  - {fileID: 11400000, guid: 6cda02c469a730145b38819b6a6eebcf, type: 2}
+  - {fileID: 11400000, guid: 9be3b9e2f2a1c3446b6bba1875023556, type: 2}
+  - {fileID: 11400000, guid: 14e8885f8719c5c4ba8220332425a0df, type: 2}
+  - {fileID: 11400000, guid: bb47bd0460a5f334197771882c10bdca, type: 2}
   - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 142242a11794c0144b74cf9d3fec6b30, type: 2}
+  - {fileID: 11400000, guid: f19c070a8dab5ca458ff5893ebcc3e51, type: 2}
+  - {fileID: 11400000, guid: bcba70ac51213554aab57c135ec5803d, type: 2}
+  - {fileID: 11400000, guid: f4e06b532796256439839aa78444ce9a, type: 2}
+  - {fileID: 11400000, guid: af55be4480a97764b916854e557d18be, type: 2}
+  - {fileID: 11400000, guid: 3872942962599a546944e0474190ac42, type: 2}
+  - {fileID: 11400000, guid: f458b0b7e3a4ff64582736d98e9f3eca, type: 2}
+  - {fileID: 11400000, guid: ddce2f134763861418867cc69db61efa, type: 2}
+  - {fileID: 11400000, guid: b318d2a852e229f4ca9ceae32cfea3a1, type: 2}
+  - {fileID: 11400000, guid: 4b7d5e30ca5bcca4796c82b23c952de8, type: 2}
+  - {fileID: 11400000, guid: 3d551fab894d7cc4aa34afe651bce499, type: 2}
+  - {fileID: 11400000, guid: 5124d394d2636d74b9d868d5cbad3721, type: 2}
   finalWave: {fileID: 11400000, guid: ac734e48053205b48a5b1b28ddf07ce5, type: 2}
   waveIndex: 0
 --- !u!4 &1876162866
