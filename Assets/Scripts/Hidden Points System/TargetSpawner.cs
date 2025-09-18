@@ -116,6 +116,7 @@ namespace Hidden_Points_System
                 if (target != null && target.gameObject.activeSelf)
                 {
                     target.gameObject.SetActive(false);
+                    GameEvents.OnTargetCountChanged?.Invoke(-1);
                     TargetPool.Instance.Return(target);
                 }
             }

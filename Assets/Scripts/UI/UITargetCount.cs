@@ -24,6 +24,10 @@ namespace UI
         private void UpdateTargetCount(int arg)
         {
             count += arg;
+            if (count < 0)
+            {
+                count = 0;
+            }
             if (targetCountText != null)
                 targetCountText.text = $"Disruptions: {count}";
         }
