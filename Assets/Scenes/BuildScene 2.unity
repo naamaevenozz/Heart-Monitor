@@ -4079,6 +4079,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780836487}
   m_CullTransparentMesh: 1
+--- !u!1 &1797193962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1797193964}
+  - component: {fileID: 1797193963}
+  m_Layer: 0
+  m_Name: VibrationSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1797193963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797193962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec25d3a347e43e1996838d709a95536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultProfile: {fileID: 0}
+--- !u!4 &1797193964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797193962}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6045351, y: 5.2538257, z: -0.077626474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876162864
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,10 +4159,10 @@ MonoBehaviour:
   yMax: 0
   baseLifeTime: 0
   waveConfigs:
+  - {fileID: 11400000, guid: 5d91029642f42ba40937c09da9665133, type: 2}
   - {fileID: 11400000, guid: e8fb48ae8791b1d4583a73d01d2ed5ac, type: 2}
   - {fileID: 11400000, guid: 3a6c5299fdca39e49b72a52f66cbc6fb, type: 2}
   - {fileID: 11400000, guid: 4555279679120f94da45187f644eb8c5, type: 2}
-  - {fileID: 11400000, guid: 5d91029642f42ba40937c09da9665133, type: 2}
   - {fileID: 11400000, guid: 160d8c29e8b84f84082ff3c5cad2fe9b, type: 2}
   - {fileID: 11400000, guid: 3f26c303a418cb740b218014271ee9d8, type: 2}
   - {fileID: 11400000, guid: 315454d6c5c83c945b422b614f1fbe67, type: 2}
@@ -4631,3 +4676,4 @@ SceneRoots:
   - {fileID: 1423721006}
   - {fileID: 1876162866}
   - {fileID: 1123848930}
+  - {fileID: 1797193964}
