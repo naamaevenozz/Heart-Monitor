@@ -2795,16 +2795,24 @@ MonoBehaviour:
   yMax: 0
   baseLifeTime: 0
   waveConfigs:
-  - {fileID: 11400000, guid: e8fb48ae8791b1d4583a73d01d2ed5ac, type: 2}
-  - {fileID: 11400000, guid: 3a6c5299fdca39e49b72a52f66cbc6fb, type: 2}
-  - {fileID: 11400000, guid: 4555279679120f94da45187f644eb8c5, type: 2}
-  - {fileID: 11400000, guid: 5d91029642f42ba40937c09da9665133, type: 2}
-  - {fileID: 11400000, guid: 160d8c29e8b84f84082ff3c5cad2fe9b, type: 2}
+  - {fileID: 11400000, guid: bb47bd0460a5f334197771882c10bdca, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
   - {fileID: 11400000, guid: 3f26c303a418cb740b218014271ee9d8, type: 2}
   - {fileID: 11400000, guid: 315454d6c5c83c945b422b614f1fbe67, type: 2}
   - {fileID: 11400000, guid: a834b31e083ee0a48950547e1ab97a9c, type: 2}
   - {fileID: 11400000, guid: e4f06efcf2be42047a1607c32843bccd, type: 2}
   - {fileID: 11400000, guid: d84c82f090e81b24e9b07dab41b28dec, type: 2}
+  - {fileID: 11400000, guid: 0b2456bd7c142644cb60c31c70328fb6, type: 2}
+  - {fileID: 11400000, guid: 88f074f46cae801438ecb841d4be139e, type: 2}
+  - {fileID: 11400000, guid: bd2786c96139ab54890c4c0e99206e87, type: 2}
+  - {fileID: 11400000, guid: 6cda02c469a730145b38819b6a6eebcf, type: 2}
+  - {fileID: 11400000, guid: 9be3b9e2f2a1c3446b6bba1875023556, type: 2}
+  - {fileID: 11400000, guid: 14e8885f8719c5c4ba8220332425a0df, type: 2}
+  - {fileID: 11400000, guid: bb47bd0460a5f334197771882c10bdca, type: 2}
+  - {fileID: 11400000, guid: 8c62cc1459209b04f948f2c1c91972be, type: 2}
   finalWave: {fileID: 11400000, guid: ac734e48053205b48a5b1b28ddf07ce5, type: 2}
   waveIndex: 0
 --- !u!4 &1876162866
