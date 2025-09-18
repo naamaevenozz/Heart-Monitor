@@ -33,8 +33,8 @@ namespace Hidden_Points_System
 
         private void Start()
         {
-            Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)) * 0.9f;
-            Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)) * 0.9f;
+            Vector3 left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)) * 0.8f;
+            Vector3 right = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)) * 0.8f;
 
             screenLeftX = left.x;
             screenRightX = right.x;
