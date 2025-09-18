@@ -62,6 +62,7 @@ public class MaterialController : MonoBehaviour
 
     private void ShowIntro()
     {
+        StopAllCoroutines();
         HandleWaveStarted(introWaveConfig);
     }
 
