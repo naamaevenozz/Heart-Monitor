@@ -15,6 +15,8 @@ MonoBehaviour:
   targetAmount: 3
   spawnDelay: 1.5
   minBound: -2
+  spawnDelay: 1.5
+  minBound: -1.9
   maxBound: 2.9
   lifetime: 2.5
   wavesAmount: 3.5
