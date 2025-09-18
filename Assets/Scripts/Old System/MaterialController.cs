@@ -65,13 +65,7 @@ public class MaterialController : MonoBehaviour
         StopAllCoroutines();
         HandleWaveStarted(introWaveConfig);
     }
-
-    // private void ResetFunc()
-    // {
-    //     Debug.Log("Final wave from material controller");
-    //     material.SetFloat("_waves_Amp", 0);
-    // }
-
+    
     private void HandleWaveStarted(WaveConfig obj)
     {
         material.SetFloat("_speed", obj.speed);
@@ -79,5 +73,15 @@ public class MaterialController : MonoBehaviour
         material.SetFloat("_waves_Amp", obj.wavesAmp);
         material.SetFloat("_noise_Amp", obj.noiseAmp);
         material.SetFloat("_noise_Scale", obj.noiseScale);
+        
+        // Color currentColor = material.GetColor("_Color"); 
+        // float currentIntensity = currentColor.a; 
+        //
+        // Color newColor = new Color(obj.color.x, obj.color.y, obj.color.z, 3.5f);
+        //
+        // material.SetColor("_Color", newColor);
+        // material.SetVector("_Color",obj.color);
+        
     }
+
 }

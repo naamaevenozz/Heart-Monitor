@@ -68,15 +68,15 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _ZWrite: 0
-    - _noise_Amp: 5.03
-    - _noise_Scale: 2.75
-    - _speed: 0.54
+    - _noise_Amp: 0
+    - _noise_Scale: 0
+    - _speed: 0.05
     - _waves: 9.96
-    - _waves_Amount: 1.58
-    - _waves_Amp: 0.76
+    - _waves_Amount: 11
+    - _waves_Amp: 0.214
     - _waves_Number: 3.5
     m_Colors:
-    - _Color: {r: 2.5176992, g: 8.771532, b: 1.5170875, a: 1}
+    - _Color: {r: 2.4402118, g: 8.474191, b: 1.5084946, a: 255}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

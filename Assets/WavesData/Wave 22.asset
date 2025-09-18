@@ -22,4 +22,4 @@ MonoBehaviour:
   speed: 0.8
   noiseAmp: 0
   noiseScale: 0
-  color: {x: 0, y: 0, z: 0, w: 0}
+  color: {x: 219, y: 4, z: 14, w: 255}

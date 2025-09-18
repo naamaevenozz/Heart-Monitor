@@ -60,6 +60,10 @@ namespace Hidden_Points_System
         }
         void StartWave()
         {
+            if (waveIndex == 29)
+            {
+                waveIndex = 0;
+            }
             WaveConfig waveConfig = waveConfigs[waveIndex];
             GameEvents.OnWaveStarted?.Invoke(waveConfig);
             waveIndex++;
