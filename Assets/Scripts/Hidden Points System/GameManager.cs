@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using DefaultNamespace;
 using Sound;
 using UnityEditor.Analytics;
@@ -16,7 +17,9 @@ namespace Hidden_Points_System
          public float baseLifeTime ;
          [SerializeField] WaveConfig [] waveConfigs;
          [SerializeField] private WaveConfig finalWave;
+         [SerializeField] private WaveConfig tutorialWave;
          public int waveIndex ;
+         private bool _isTutorialWave = false;
 
         
          void Start()
@@ -31,12 +34,15 @@ namespace Hidden_Points_System
         {
             GameEvents.OnWaveEnded += NextWave;
             GameEvents.GameStarted += OnGameStart;
+            GameEvents.Tutorial += OnTutorial;
             //GameEvents.GameOver += EndGame;
         }
+
         private void OnDisable()
         {
             GameEvents.OnWaveEnded -= NextWave;
             GameEvents.GameStarted -= OnGameStart;
+            GameEvents.Tutorial -= OnTutorial;
             //GameEvents.GameOver -= EndGame;
         }
 
@@ -47,8 +53,18 @@ namespace Hidden_Points_System
 
         private void NextWave()
         {
-            Debug.Log($"Next wave at {waveIndex}");
-            StartWave();
+            if (_isTutorialWave)
+            {
+                _isTutorialWave = false;
+                waveIndex = 0;
+                GameEvents.OnTutorialEnd?.Invoke();
+                StartCoroutine(BackToIntro());
+            }
+            else
+            {
+                Debug.Log($"Next wave at {waveIndex}");
+                StartWave();
+            }
         }
 
         void OnGameStart()
@@ -69,6 +85,17 @@ namespace Hidden_Points_System
             waveIndex++;
         }
 
+        private void OnTutorial()
+        {
+            _isTutorialWave = true;
+            GameEvents.OnWaveStarted?.Invoke(tutorialWave);
+        }
+        
+        private IEnumerator BackToIntro()
+        {
+            yield return new WaitForSeconds(2f);
+            GameEvents.Intro?.Invoke();
+        }
     }
 
 }

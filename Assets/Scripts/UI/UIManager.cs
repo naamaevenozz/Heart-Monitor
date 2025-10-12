@@ -10,12 +10,16 @@ namespace UI
         [SerializeField] private GameObject introPanel;
         [SerializeField] private GameObject gamePanel;
         [SerializeField] private GameObject endPanel;
+        [SerializeField] private GameObject tutorialPanel;
+        [SerializeField] private GameObject tutorialTxt;
 
         private void OnEnable()
         {
             GameEvents.Intro += ShowIntro;
             GameEvents.GameStarted += ShowGame;
             GameEvents.GameOver += ShowEnd;
+            GameEvents.Tutorial += ShowTutorial;
+            GameEvents.OnTutorialEnd += TutorialFeedback;
         }
 
         private void OnDisable()
@@ -23,6 +27,8 @@ namespace UI
             GameEvents.Intro -= ShowIntro;
             GameEvents.GameStarted -= ShowGame;
             GameEvents.GameOver -= ShowEnd;
+            GameEvents.Tutorial -= ShowTutorial;
+            GameEvents.OnTutorialEnd -= TutorialFeedback;
         }
 
         private void ShowIntro()
@@ -30,6 +36,8 @@ namespace UI
             introPanel.SetActive(true);
             gamePanel.SetActive(false);
             endPanel.SetActive(false);
+            tutorialPanel.SetActive(false);
+            tutorialTxt.SetActive(false);
         }
 
         private void ShowGame()
@@ -37,6 +45,8 @@ namespace UI
             introPanel.SetActive(false);
             gamePanel.SetActive(true);
             endPanel.SetActive(false);
+            tutorialPanel.SetActive(false);
+            tutorialTxt.SetActive(false);
         }
 
         private void ShowEnd()
@@ -44,6 +54,22 @@ namespace UI
             introPanel.SetActive(false);
             gamePanel.SetActive(false);
             endPanel.SetActive(true);
+            tutorialPanel.SetActive(false);
+            tutorialTxt.SetActive(false);
+        }
+        
+        private void ShowTutorial()
+        {
+            introPanel.SetActive(false);
+            gamePanel.SetActive(false);
+            endPanel.SetActive(false);
+            tutorialPanel.SetActive(true);
+            tutorialTxt.SetActive(false);
+        }
+        
+        private void TutorialFeedback()
+        {
+            tutorialTxt.SetActive(true);
         }
     }
 

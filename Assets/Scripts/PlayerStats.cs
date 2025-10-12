@@ -15,14 +15,11 @@ public class PlayerStats : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // מונע כפילויות
+            Destroy(gameObject); 
             return;
         }
 
         Instance = this;
-
-        // אם צריך שהוא ישרוד טעינת סצנה:
-        // DontDestroyOnLoad(gameObject);
     }
 
     public void AddScore(int delta)

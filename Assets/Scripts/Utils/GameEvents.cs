@@ -15,5 +15,7 @@ namespace DefaultNamespace
         public static Action OnTargetSpawn;
         public static Action OnHighScoreChanged;
         public static Action<int> OnTargetCountChanged;
+        public static Action Tutorial;
+        public static Action OnTutorialEnd;
     }
 }
