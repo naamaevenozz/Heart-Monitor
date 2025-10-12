@@ -5,7 +5,6 @@ using Sound;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
-// using VibrationSystem;
 
 namespace Hidden_Points_System
 {
@@ -17,7 +16,6 @@ namespace Hidden_Points_System
         [SerializeField] private Color originalColor;
         [SerializeField] private GameObject halo;
         [SerializeField] private SpriteRenderer sr;
-        // [SerializeField] private VibrationProfile vibrationProfile;
         private void Awake()
         {
             if (halo == null)
@@ -90,7 +88,6 @@ namespace Hidden_Points_System
             if (hit.collider != null && hit.collider.gameObject == gameObject)
             {
                 StartCoroutine(Deactivate(true));
-                // VibrationManager.Instance.Play(vibrationProfile);
             }
         }
 
