@@ -485,7 +485,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Arrows_0: -1033766676993296678
+      Arrows_1: 5287939958834139383
+      Arrows_10: -9146782503041755686
+      Arrows_11: -1869602054923354706
+      Arrows_12: -619443622549693501
+      Arrows_13: -3070942499793896952
+      Arrows_2: 3318904089994504119
+      Arrows_3: 2319643638384702094
+      Arrows_4: 7762582236204482122
+      Arrows_5: -7389299311667654144
+      Arrows_6: 8725979607429122002
+      Arrows_7: -4660600526088031369
+      Arrows_8: -8063395830634880408
+      Arrows_9: -3364982650870575014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
